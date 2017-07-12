@@ -1,0 +1,27 @@
+<div>
+	<div  class="col-md-{{selCol}}"  ng-if="CategotryClassList">
+		<ui-select ng-model="categoryVo.categoryClass"  theme="selectize"   require 
+			 data-ng-change="categoryVo.pLevel=null;categoryVo.sLevel=null;findCategory(categoryVo);changeClass(categoryVo)"> 
+			<ui-select-match placeholder="请选择">{{$select.selected.name}}</ui-select-match>
+			<ui-select-choices repeat="item in CategotryClassList | filter: {name:$select.search}">
+				<div ng-bind-html="item.name | highlight: $select.search"></div>
+			</ui-select-choices>
+	   </ui-select>
+	</div>
+	<div  class="col-md-{{uiCol}}"   ng-if="categoryVo.categoryClass.code">
+		<ui-select ng-model="categoryVo.pLevel"  theme="selectize"  require data-ng-change="categoryVo.sLevel=null;changePLevel()"> 
+			<ui-select-match placeholder="请选择">{{$select.selected.label}}</ui-select-match>
+			<ui-select-choices repeat="item in menuData | filter: {label:$select.search}">
+				<div ng-bind-html="item.label | highlight: $select.search"></div>
+			</ui-select-choices>
+	   </ui-select>
+	</div>
+	<div  class="col-md-{{uiCol}}"  ng-if="categoryVo.pLevel.id">
+		<ui-select ng-model="categoryVo.sLevel"  theme="selectize"   require data-ng-change="changeSLevel()"> 
+			<ui-select-match placeholder="请选择">{{$select.selected.label}}</ui-select-match>
+			<ui-select-choices repeat="item in categoryVo.pLevel.level | filter: {label:$select.search}">
+				<div ng-bind-html="item.label | highlight: $select.search"></div>
+			</ui-select-choices>
+	   </ui-select>
+	</div>
+</div>

@@ -1,0 +1,39 @@
+<!-- 城市多选框模板 -->
+<div>
+	<div class="form-group">
+		<label class="col-md-{{labelCol}} control-label">运营模式：<span class="required" ng-if="cityModelIsRequired"> * </span></label>
+		<div class="col-md-{{divCol}}">
+			<div class="radio-list">
+				<label class="radio-inline" ng-repeat="val in cityModeList">
+					<div class="radio">
+						<span ng-class="{'checked':vo.cityMode== val.code}">
+							<input type="radio" name="status" value="{{val.code}}"
+							id="radio-control" ng-model="vo.cityMode"
+							ng-click="changeMode(vo.cityMode);">
+						</span>
+					</div> {{val.name}}
+				</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-{{labelCol}} control-label">所属城市：<span class="required" ng-if="cityIsRequired"> * </span></label>
+		<div class="col-md-{{divCol}}">
+			<form id="#" name="Form" class="form-horizontal"
+				novalidate="novalidate">
+				<div class="form-body">
+					<div class="form-group">
+						<div class="col-md-7" id="treeDiv">
+							<input class="form-control" type="text" id="dicKey"
+								ng-model="inputVal" style="width:321px;"
+								data-ng-change="changeArea('treeDemo','name')"
+								placeholder="输入树节点关键字，按Enter键搜索" />
+							<ul id="treeDemo" class="form-control ztree"></ul>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+	
