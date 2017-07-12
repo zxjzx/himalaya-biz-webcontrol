@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yijiupi.himalaya.biz.webcontrol.consts.WebConstant;
 import com.yijiupi.himalaya.biz.webcontrol.pagemodel.BaseResult;
 import com.yijiupi.himalaya.biz.webcontrol.pagemodel.ListResult;
-import com.yijiupi.himalaya.masterdata.adminuser.dto.ProvinceAllCitiesDTO;
+import com.yijiupi.himalaya.masterdata.adminuser.dto.ProvinceAndSubCityDTO;
 
 @RestController
 @RequestMapping("/templates/bizwebcontrol/jiupicitymultitree")
@@ -28,8 +28,8 @@ public class JiupiCityMultiTreeQueryController {
 	 */
 	@RequestMapping(value = "/listProvinceAllCitiesDTO/{cityMode}", method = RequestMethod.GET)
 	public BaseResult listProvinceAllCitiesDTO(@PathVariable("cityMode") Integer cityMode) {
-		List<ProvinceAllCitiesDTO> list = jiupiCityFullNameQueryService.listProvinceAllCitiesDTO(cityMode);
-		ListResult<ProvinceAllCitiesDTO> result = new ListResult<>(list);
+		List<ProvinceAndSubCityDTO> list = jiupiCityFullNameQueryService.listProvinceAllCitiesDTO(cityMode);
+		ListResult<ProvinceAndSubCityDTO> result = new ListResult<>(list);
 		result.setResult(WebConstant.RESULT_SUCCESS);
 		return result;
 	}
