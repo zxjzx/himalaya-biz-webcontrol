@@ -10,12 +10,13 @@
 		   /**
 		    * 获取所有的酒批城市接口服务
 		    * cityMode  用于搜索cityMode对应的酒批城市。
+		    * cityMode为-1默认查所有的
 		    */
 		   this.findJiupiCityListByCityMode = function(cityMode){
 			   return $q(function (resolve, reject) {
 		           $http({
 		               method: 'GET',
-		               url: '/components/JiupiCityCtrl/listProvinceAllCitiesDTO/' + cityMode
+		               url: '/bizwebcontrol/jiupicitymultitree/listProvinceAllCitiesDTO/' + cityMode
 		           }).success(function (data) {
 		               resolve(data)
 		           }).error(function (data) {

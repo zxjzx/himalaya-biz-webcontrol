@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yijiupi.himalaya.biz.webcontrol.consts.WebConstant;
 import com.yijiupi.himalaya.biz.webcontrol.pagemodel.BaseResult;
 import com.yijiupi.himalaya.biz.webcontrol.pagemodel.ListResult;
 import com.yijiupi.himalaya.masterdata.adminuser.domain.org.JiupiCity;
@@ -26,6 +27,7 @@ public class JiupiCityFullNameBizCtrlQueryController {
 	public BaseResult findAllJiupiCityList() {
 		List<JiupiCity> jiupiCityList = jiupiCityFullNameQueryService.findAllJiupiCityList();
 		ListResult<JiupiCity> result = new ListResult<>(jiupiCityList);
+		result.setResult(WebConstant.RESULT_SUCCESS);
 		return result;
 	}
 }
