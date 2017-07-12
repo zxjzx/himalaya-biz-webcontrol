@@ -9,7 +9,7 @@ import com.yijiupi.himalaya.masterdata.adminuser.domain.org.JiupiCity;
 import com.yijiupi.himalaya.masterdata.adminuser.service.IJiupiCityService;
 
 @Service
-public class JiupiCityFullNameQueryService {
+public class JiupiCityFullNameBizCtrlQueryService {
 
 	@Reference
 	private IJiupiCityService iJiupiCityService;

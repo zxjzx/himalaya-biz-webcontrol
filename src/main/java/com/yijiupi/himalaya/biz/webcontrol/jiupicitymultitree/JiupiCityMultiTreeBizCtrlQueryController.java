@@ -15,10 +15,10 @@ import com.yijiupi.himalaya.masterdata.adminuser.dto.ProvinceAndSubCityDTO;
 
 @RestController
 @RequestMapping("/templates/bizwebcontrol/jiupicitymultitree")
-public class JiupiCityMultiTreeQueryController {
+public class JiupiCityMultiTreeBizCtrlQueryController {
 
 	@Autowired
-	private JiupiCityMultiTreeQueryService jiupiCityFullNameQueryService;
+	private JiupiCityMultiTreeBizCtrlQueryService jiupiCityFullNameQueryService;
 
 	/**
 	 * 获取所有的启用状态下的酒批城市集合

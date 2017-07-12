@@ -9,7 +9,7 @@ import com.yijiupi.himalaya.masterdata.adminuser.dto.ProvinceAndSubCityDTO;
 import com.yijiupi.himalaya.masterdata.adminuser.service.IJiupiCityService;
 
 @Service
-public class JiupiCityMultiTreeQueryService {
+public class JiupiCityMultiTreeBizCtrlQueryService {
 
 	@Reference
 	private IJiupiCityService iJiupiCityService;

@@ -13,10 +13,10 @@ import com.yijiupi.himalaya.masterdata.adminuser.domain.org.JiupiCity;
 
 @RestController
 @RequestMapping("/templates/bizwebcontrol/jiupicityfullname")
-public class JiupiCityFullNameQueryController {
+public class JiupiCityFullNameBizCtrlQueryController {
 
 	@Autowired
-	private JiupiCityFullNameQueryService jiupiCityFullNameQueryService;
+	private JiupiCityFullNameBizCtrlQueryService jiupiCityFullNameQueryService;
 
 	/**
 	 * 获取所有启用的酒批城市列表

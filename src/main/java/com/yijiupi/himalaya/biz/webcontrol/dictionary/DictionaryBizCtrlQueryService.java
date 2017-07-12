@@ -11,7 +11,7 @@ import com.yijiupi.himalaya.trading.setting.domain.dictionary.DictionaryType;
 import com.yijiupi.himalaya.trading.setting.service.IDictionaryTypeService;
 
 @Service
-public class DictionaryQueryService {
+public class DictionaryBizCtrlQueryService {
 
 	@Reference
 	private IDictionaryTypeService dictionaryTypeService;

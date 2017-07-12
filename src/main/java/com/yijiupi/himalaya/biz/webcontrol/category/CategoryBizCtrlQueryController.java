@@ -20,10 +20,10 @@ import com.yijiupi.himalaya.biz.webcontrol.pagemodel.ROResult;
  * @date 2017年4月11日 上午10:48:14
  */
 @RestController
-public class CategoryQueryController {
+public class CategoryBizCtrlQueryController {
 
 	@Autowired
-	private CategoryQueryService categoryQueryService;
+	private CategoryBizCtrlQueryService categoryQueryService;
 
 	/**
 	 * 获取所有类目和子类目(结果集拼装为前端要求的形式,用于前段的二级联动)

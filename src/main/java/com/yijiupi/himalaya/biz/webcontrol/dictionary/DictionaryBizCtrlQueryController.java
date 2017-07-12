@@ -20,10 +20,10 @@ import com.yijiupi.himalaya.biz.webcontrol.pagemodel.ROResult;
  * @date 2017年4月11日 上午10:48:14
  */
 @RestController
-public class DictionaryQueryController {
+public class DictionaryBizCtrlQueryController {
 
 	@Autowired
-	private DictionaryQueryService dictionaryQueryService;
+	private DictionaryBizCtrlQueryService dictionaryQueryService;
 
 	/**
 	 * 根据字典类型编码获取详情

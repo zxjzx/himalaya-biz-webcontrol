@@ -16,7 +16,7 @@ import com.yijiupi.himalaya.masterdata.productcategory.domain.ProductCategory;
 import com.yijiupi.himalaya.masterdata.productcategory.service.IProductCategoryQueryService;
 
 @Service
-public class CategoryQueryService {
+public class CategoryBizCtrlQueryService {
 
 	@Reference
 	private IProductCategoryQueryService iProductCategoryQueryService;
