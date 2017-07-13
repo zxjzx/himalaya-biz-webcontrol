@@ -15,6 +15,7 @@
 	            leafNodes:'=',
 	            cityModelIsRequired:'=',
 	            cityIsRequired:'=',
+	            isDisabled:'=',
 	        },
 	        templateUrl:  '../static/multiJiupiCityTree/multiJiupiCityTree.html',
 	        controller: ['$rootScope','$scope','$http','jiupiCityTreeService','findDictionaryByCodeService','zTreeService',
@@ -37,7 +38,10 @@
 		        	})
 		        	//默认运营模式为自营
 		        	$scope.vo.cityMode = 1 ;
-	        	
+		        	
+		        	//copy $scope.leafNodes的值
+//		        	$scope.leafNodesCopyList = angular.copy($scope.leafNodes);
+		        	
 		            //已知区域Id，获取街道数据
 		        	var findAllJiupiCity = function(){
 		        		jiupiCityTreeService.findJiupiCityListByCityMode($scope.vo.cityMode)
@@ -77,6 +81,10 @@
 		                    			parentItem.open = true ;
 		                    			parentItem.checked = true ;
 		                    			childItem.checked = true;
+		                    			if($scope.isDisabled){
+		                    				parentItem.chkDisabled = true ;
+		                    				childItem.chkDisabled = true ;
+		                    			}
 		                    		}
 		                    	});
 		                	})
@@ -84,7 +92,7 @@
 	                }
 	                
 	                function showNode(){
-	                    $scope.leafNodes = [];//清空
+//	                    $scope.leafNodes = [];//清空
 	                    var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
 	                    var nodes = treeObj.getCheckedNodes(true);
 	                    zTreeService.setCheckedNodes(treeObj,nodes);

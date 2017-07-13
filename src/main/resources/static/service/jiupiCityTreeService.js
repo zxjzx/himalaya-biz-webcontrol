@@ -110,7 +110,8 @@
 		                var pNode = item.getParentNode();
 		                leafNodes.push({
 		                    cityId: item.id,
-		                    name: item.name,
+		                    province:pNode.name ,
+		                    city: item.name,
 		                    fullName: fullName,
 		                });
 		            }
