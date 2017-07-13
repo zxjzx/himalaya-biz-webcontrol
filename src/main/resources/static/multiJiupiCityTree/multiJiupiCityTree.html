@@ -24,10 +24,12 @@
 				<div class="form-body">
 					<div class="form-group">
 						<div class="col-md-7" id="treeDiv">
-							<input class="form-control" type="text" id="dicKey"
-								ng-model="inputVal" style="width:321px;"
+							<input class="form-control col-md-8" type="text" id="dicKey"
+								ng-model="inputVal" style="width:260px;"
 								data-ng-change="changeArea('treeDemo','name')"
 								placeholder="输入树节点关键字，按Enter键搜索" />
+							<span type="button" class="btn btn-primary col-md-1" style="width:60px" ng-click="searchKeyWord()">搜索</span>
+							<br /><br />
 							<ul id="treeDemo" class="form-control ztree"></ul>
 						</div>
 					</div>
