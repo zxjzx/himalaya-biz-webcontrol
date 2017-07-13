@@ -184,6 +184,11 @@
 	                        onListenEntry();
 	                    }
 	                });
+	                
+	                //搜索关键字
+	                $scope.searchKeyWord = function(){
+	                	onListenEntry();
+	                }
 	        }]
 	    }
 	}]);
