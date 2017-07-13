@@ -1,5 +1,5 @@
 	
-	<ui-select ng-model="cityObj" theme="selectize"  data-ng-change="selectCity()"  name="cityFullName" > 
+	<ui-select ng-model="cityObj.city" theme="selectize"  data-ng-change="selectCity()"  name="cityFullName" ng-disabled="isDisabled"> 
 		<ui-select-match placeholder="请选择">{{$select.selected.jiupiCityFullName}}</ui-select-match>
 		<ui-select-choices repeat="item in allCityList | filter: {jiupiCityFullName:$select.search}">
 			<div ng-bind-html="item.jiupiCityFullName | highlight: $select.search"></div>

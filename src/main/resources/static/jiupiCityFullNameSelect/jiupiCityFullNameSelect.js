@@ -8,21 +8,24 @@
 			scope:{
 				cityObj : "=",
 				isRequired:'=',
+				isDisabled:'=',
 			},
 			templateUrl:"../static/jiupiCityFullNameSelect/jiupiCityFullNameSelect.html",
 			controller:["$scope","$http",function($scope,$http){
 				
 				$scope.getCityList = function(){
-					$http.get('/bizwebcontrol/jiupicityfullname/findAllJiupiCityList').success(function(data){
+					$http.get('bizwebcontrol/jiupicityfullname/findAllJiupiCityList').success(function(data){
 		        		if(data.result=="success"){
 		        			$scope.allCityList = data.list;
 		        			$scope.allCityList.unshift({"id":"","jiupiCityFullName":"请选择"});
 		        			//默认选中
-		        			angular.forEach($scope.allCityList,function(item){
-		        				if(item.id == $scope.cityObj.cityId){
-		        					$scope.cityObj = item ;
-		        				}
-		        			})
+		        			if($scope.cityObj && $scope.cityObj.cityId){
+		        				angular.forEach($scope.allCityList,function(item){
+			        				if(item.id == $scope.cityObj.cityId){
+			        					$scope.cityObj.city = item ;
+			        				}
+			        			})
+		        			}
 		        		}
 		        	})
 				};
