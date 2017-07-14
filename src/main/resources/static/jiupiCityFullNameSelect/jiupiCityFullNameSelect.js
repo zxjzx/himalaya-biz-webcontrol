@@ -9,7 +9,7 @@
 				cityObj : "=",
 				isRequired:'=',
 				isDisabled:'=',
-				isPleaseSelect : '=',
+				isHideSelect : '=',
 			},
 			templateUrl:"../static/jiupiCityFullNameSelect/jiupiCityFullNameSelect.html",
 			controller:["$scope","$http",function($scope,$http){
@@ -18,7 +18,7 @@
 					$http.get('bizwebcontrol/jiupicityfullname/findAllJiupiCityList').success(function(data){
 		        		if(data.result=="success"){
 		        			$scope.allCityList = data.list;
-		        			if($scope.isPleaseSelect){
+		        			if(!$scope.isHideSelect){
 		        				$scope.allCityList.unshift({"id":"","jiupiCityFullName":"请选择"});
 		        			}
 		        			//默认选中
