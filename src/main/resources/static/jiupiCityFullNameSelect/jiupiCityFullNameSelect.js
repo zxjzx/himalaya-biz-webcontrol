@@ -10,6 +10,7 @@
 				isRequired:'=',
 				isDisabled:'=',
 				isHideSelect : '=',
+				changeCityFunction :'=',
 			},
 			templateUrl:"../static/jiupiCityFullNameSelect/jiupiCityFullNameSelect.html",
 			controller:["$scope","$http",function($scope,$http){
