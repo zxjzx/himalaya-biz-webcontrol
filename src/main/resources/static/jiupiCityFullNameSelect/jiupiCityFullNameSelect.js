@@ -19,9 +19,9 @@
 		        			$scope.allCityList = data.list;
 		        			$scope.allCityList.unshift({"id":"","jiupiCityFullName":"请选择"});
 		        			//默认选中
-		        			if($scope.cityObj && $scope.cityObj.cityId){
+		        			if($scope.cityObj && $scope.cityObj.city && $scope.cityObj.city.id){
 		        				angular.forEach($scope.allCityList,function(item){
-			        				if(item.id == $scope.cityObj.cityId){
+			        				if(item.id ==  $scope.cityObj.city.id){
 			        					$scope.cityObj.city = item ;
 			        				}
 			        			})
