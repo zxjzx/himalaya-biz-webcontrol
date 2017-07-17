@@ -38,10 +38,6 @@
 		        	})
 		        	//默认运营模式为自营
 		        	$scope.vo.cityMode = 1 ;
-		        	
-		        	//copy $scope.leafNodes的值
-//		        	$scope.leafNodesCopyList = angular.copy($scope.leafNodes);
-		        	
 		            //已知区域Id，获取街道数据
 		        	var findAllJiupiCity = function(){
 		        		jiupiCityTreeService.findJiupiCityListByCityMode($scope.vo.cityMode)
@@ -70,6 +66,23 @@
 		        	//切换模式触发事件
 		        	$scope.changeMode = function(){
 		        		findAllJiupiCity();
+		        	}
+		        	
+		        	//全选or取消全选
+		        	$scope.checkAll = function(checked){
+		        		angular.forEach($scope.zNodes,function(parentItem){
+              				angular.forEach(parentItem.children,function(childItem){
+              					if(!parentItem.chkDisabled){
+              						parentItem.open = checked ;
+              						parentItem.checked = checked ;
+              					}
+              					if(!childItem.chkDisabled){
+              						childItem.checked = checked ;
+              					}
+              				})
+              			})
+              			$.fn.zTree.init($("#treeDemo"), setting, $scope.zNodes);
+	              		showNode();
 		        	}
 	        	
 		        	//初始化选中的值（一般用于编辑）

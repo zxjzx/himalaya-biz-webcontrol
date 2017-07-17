@@ -30,6 +30,18 @@
 								placeholder="输入树节点关键字，按Enter键搜索" />
 							<span type="button" class="btn btn-primary col-md-1" style="width:60px" ng-click="searchKeyWord()">搜索</span>
 							<br /><br />
+							<div class="form-group">
+								<div class="checkbox-list col-md-4">
+									<label class="checkbox-inline">
+										<div class="checker">
+											<span data-ng-class="{'checked':checked == true }">
+												<input type="checkbox" data-ng-model="checked"
+												style="margin-left: 0px;" ng-click="checkAll(checked);"/>
+											</span>
+										</div>(全选)
+									</label>
+								</div>
+							</div>
 							<ul id="treeDemo" class="form-control ztree"></ul>
 						</div>
 					</div>
