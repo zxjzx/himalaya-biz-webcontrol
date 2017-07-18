@@ -87,9 +87,14 @@
 	        	
 		        	//初始化选中的值（一般用于编辑）
 	                function initNodes(nodeList){
+	                	//获取所有的cityId集合
+	                	var AllCityIdList = [] ; 
 	                	angular.forEach($scope.zNodes,function(parentItem){
 	                		angular.forEach(parentItem.children,function(childItem){
+	                			//遍历所有的节点，获取所有的cityId
+	                			AllCityIdList.push(childItem.id);
 	                			angular.forEach(nodeList,function(son){
+	                				//初始化勾选已存在的值
 		                    		if(son == childItem.id){
 		                    			parentItem.open = true ;
 		                    			parentItem.checked = true ;
@@ -102,6 +107,10 @@
 		                    	});
 		                	})
 	                	})
+	                	//将遍历获取的所有cityId与已存在的cityId做比较,数量相同，则证明全选中
+	                	if(AllCityIdList.length == nodeList.length){
+	                		$scope.checked = true ;
+	                	}
 	                }
 	                
 	                function showNode(){

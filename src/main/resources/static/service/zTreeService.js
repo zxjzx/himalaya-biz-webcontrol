@@ -64,11 +64,11 @@
 	        return fullName;
 
 	    }
-
+	    
 	    /**
-	     * 获取所有选中的叶子节点（全路径-包含上级名称）
+	     * 获取选中的jiupiCityObject集合
 	     */
-	    this.getFullLeafNodeList = function () {
+	    this.getJiupiCityObjList = function () {
 	        var leafNodes = [];
 	        angular.forEach(nodes, function (item) {
 	            if (!item.isParent) {
@@ -86,11 +86,12 @@
 	        nodes = [];
 	        return leafNodes;
 	    };
-
+	    
+	    
 	    /**
-	     * 获取所有选中的叶子节点
+	     * 获取选中的jiupiCityId集合 
 	     */
-	    this.getLeafNodes = function () {
+	    this.getJiupiCityIdList = function () {
 	        var leafNodes = [];
 	        angular.forEach(nodes, function (item) {
 	            if (!item.isParent) {
