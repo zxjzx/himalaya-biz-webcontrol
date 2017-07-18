@@ -89,6 +89,8 @@
 	                function initNodes(nodeList){
 	                	//获取所有的cityId集合
 	                	var AllCityIdList = [] ; 
+	                	//默认为false ;
+	                	$scope.checked = false ;
 	                	angular.forEach($scope.zNodes,function(parentItem){
 	                		angular.forEach(parentItem.children,function(childItem){
 	                			//遍历所有的节点，获取所有的cityId
