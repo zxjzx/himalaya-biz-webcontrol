@@ -27,12 +27,6 @@
 		        	findDictionaryByCodeService.getDictionaryTypeDetailByCode("cityModel").then(function(data){
 		        		if(data.result==='success'){
 		        			$scope.cityModeList = data.data.items ;
-		        			angular.forEach($scope.cityModeList,function(item,index){
-		        				//删除轻加盟(3为轻加盟)
-		        				if(item.code=='3'){
-		        					$scope.cityModeList.splice(index,1);
-		        				}
-		        			});
 		        			$scope.cityModeList.push({'code' : -1,'name': '所有城市'})
 		        		}
 		        	})
