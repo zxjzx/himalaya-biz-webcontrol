@@ -7,7 +7,7 @@
 		<version>2.4.0</version>
 	</parent>
 	<groupId>com.yijiupi</groupId>
-	<artifactId>himalaya-biz-controller</artifactId>
+	<artifactId>himalaya-biz-webcontrol</artifactId>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<destDir>${project.build.outputDirectory}/META-INF/resources/</destDir>
@@ -56,4 +56,5 @@
 		</dependency>
 
 	</dependencies>
+	<version>${himalaya-biz-webcontrol.version}</version>
 </project>
