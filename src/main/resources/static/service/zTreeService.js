@@ -6,45 +6,38 @@
 	
 	var zTreeServiceModule = angular.module('zTreeServiceModule',[]);
 	zTreeServiceModule.service('zTreeService', ['$cacheFactory', function ($cacheFactory) {
-		
-		//存储用户已选酒批城市Id节点列表
-	    var cacheJiupiCityIdList = [];
-	    
+
+	    var nodes = [];
+	    var treeObj = null;
 	    /**
-	     * 缓存用户已选节点时间 
+	     * 设置所有选中的节点
 	     */
-	    this.cahceUserCheckedNode = function(checkedNodeList,notCheckedNodeList){
-	    	
-	    	//还没有任何缓存时，直接将用户已选中节点存入allCheckedNodeList
-	    	if(!cacheJiupiCityIdList || cacheJiupiCityIdList.length == 0){
-	    		angular.forEach(checkedNodeList,function(newCheckedNode){
-	    			if(!newCheckedNode.isParent){
-	    				cacheJiupiCityIdList.push(newCheckedNode.id)
-	    			}
-	    		});
-	    	}else {
-		    	//add节点
-	    		angular.forEach(checkedNodeList,function(nodeItem){
-	    			if(!nodeItem.isParent){
-	    				if(cacheJiupiCityIdList.indexOf(nodeItem.id) < 0){
-	    					cacheJiupiCityIdList.push(nodeItem.id);
-	    				}
-	    			}
-	    		})
-	    		//remove节点
-	    		angular.forEach(notCheckedNodeList,function(nodeItem){
-	    			if(!nodeItem.isParent){
-	    				if(cacheJiupiCityIdList.indexOf(nodeItem.id) >= 0){
-	    					angular.forEach(cacheJiupiCityIdList,function(cacheItem,index){
-	    						if(nodeItem.id == cacheItem){
-	    							cacheJiupiCityIdList.splice(index,1)
-	    						}
-	    					})
-	    				}
-	    			}
-	    		})
-	    		
-	    	}
+	    this.getCheckedNodes = function () {
+	        return nodes;
+	    };
+
+	    /**
+	     * 获取所有选中的节点
+	     */
+	    this.setCheckedNodes = function (tObj, checkNodes) {
+	        nodes = checkNodes;
+	        treeObj = tObj;
+	    };
+	    this.removeCheckedNodes =function(Nodes){
+	        nodes=[];
+	    };
+
+	    /**
+	     * 通过节点id获取节点
+	     */
+	    function getTreeNodeById(nodeId) {
+	        var currentNode = null;
+	        angular.forEach(nodes, function (item) {
+	            if (nodeId == item.id) {
+	                currentNode = item;
+	            }
+	        });
+	        return currentNode;
 	    }
 
 	    /**
@@ -77,7 +70,7 @@
 	     */
 	    this.getJiupiCityObjList = function () {
 	        var leafNodes = [];
-	        angular.forEach(allCheckedNodeList, function (item) {
+	        angular.forEach(nodes, function (item) {
 	            if (!item.isParent) {
 	                var fullName = getFullNameByNodeId(item.id);
 	                //父节点
@@ -90,6 +83,7 @@
 	                });
 	            }
 	        });
+	        nodes = [];
 	        return leafNodes;
 	    };
 	    
@@ -98,7 +92,13 @@
 	     * 获取选中的jiupiCityId集合 
 	     */
 	    this.getJiupiCityIdList = function () {
-	        return cacheJiupiCityIdList;
+	        var leafNodes = [];
+	        angular.forEach(nodes, function (item) {
+	            if (!item.isParent) {
+	                leafNodes.push(item.id);
+	            }
+	        });
+	        return leafNodes;
 	    }
 	}]);
 	
