@@ -16,6 +16,7 @@
 	            cityModelIsRequired:'=',
 	            cityIsRequired:'=',
 	            isDisabled:'=',
+	            defaultCityMode : '='
 	        },
 	        templateUrl:  '../static/multiJiupiCityTree/multiJiupiCityTree.html',
 	        controller: ['$rootScope','$scope','$http','jiupiCityTreeService','findDictionaryByCodeService','zTreeService',
@@ -23,25 +24,30 @@
 	        	
 		        	$scope.vo = {} ;
 		        	
+		        	//copy $scope.leafNodes的值
+		        	var copyLeafNodes = angular.copy($scope.leafNodes);
+		        	
 		        	//获取运营模式字典
 		        	findDictionaryByCodeService.getDictionaryTypeDetailByCode("cityModel").then(function(data){
 		        		if(data.result==='success'){
 		        			$scope.cityModeList = data.data.items ;
-		        			$scope.cityModeList.push({'code' : -1,'name': '所有城市'})
+		        			$scope.cityModeList.unshift({'code' : -1,'name': '所有城市'});
 		        		}
 		        	})
-		        	//默认运营模式为自营
-		        	$scope.vo.cityMode = 1 ;
-		            //已知区域Id，获取街道数据
-		        	var findAllJiupiCity = function(){
+		        	
+		        	//默认运营模式为所有城市
+		        	$scope.vo.cityMode = $scope.defaultCityMode ? $scope.defaultCityMode : -1;
+		        	
+		            //根据运营模式获取酒批城市
+		        	var findJiupiCityByCityMode = function(){
 		        		jiupiCityTreeService.findJiupiCityListByCityMode($scope.vo.cityMode)
 		              	  .then(function(result){
 		              		$scope.zNodes = jiupiCityTreeService.convertModel(result.list);
 		              		var parentChecked = [];
-		              		if($scope.leafNodes && $scope.leafNodes.length>0 ){
+		              		if(copyLeafNodes && copyLeafNodes.length>0 ){
 		              			angular.forEach($scope.zNodes,function(parentItem){
 		              				angular.forEach(parentItem.children,function(childItem){
-		              					angular.forEach($scope.leafNodes,function(leafItem){
+		              					angular.forEach(copyLeafNodes,function(leafItem){
 		              						if(leafItem == childItem.id){
 		              							childItem.checked = true ;
 			              						parentChecked.push(childItem.id);
@@ -52,14 +58,15 @@
 		              		}
 		              		 initNodes(parentChecked);
 		              		$.fn.zTree.init($("#treeDemo"), setting, $scope.zNodes);
-		              		showNode();
+		              		cahceUserCheckedNode();
 		              	});
 		        	}
-		        	findAllJiupiCity();
+		        	findJiupiCityByCityMode();
 	        	
 		        	//切换模式触发事件
 		        	$scope.changeMode = function(){
-		        		findAllJiupiCity();
+		        		copyLeafNodes = zTreeService.getJiupiCityIdList();
+		        		findJiupiCityByCityMode();
 		        	}
 		        	
 		        	//全选or取消全选
@@ -76,7 +83,7 @@
               				})
               			})
               			$.fn.zTree.init($("#treeDemo"), setting, $scope.zNodes);
-	              		showNode();
+		        		cahceUserCheckedNode();
 		        	}
 	        	
 		        	//初始化选中的值（一般用于编辑）
@@ -111,13 +118,16 @@
 	                	})
 	                }
 	                
-	                function showNode(){
-//	                    $scope.leafNodes = [];//清空
+	                function cahceUserCheckedNode(){
 	                    var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
-	                    var nodes = treeObj.getCheckedNodes(true);
-	                    zTreeService.setCheckedNodes(treeObj,nodes);
+	                    //获取当前树对象,全部勾选的节点
+	                    var checkedNodeList = treeObj.getCheckedNodes(true);
+	                    //获取当前树对象,全部未勾选的节点
+	                    var notCheckedNodeList = treeObj.getCheckedNodes(false);
+	                    
+	                    zTreeService.cahceUserCheckedNode(checkedNodeList,notCheckedNodeList);
 	                }
-
+	                
 	                function nodeHighlight(nodeIndex){
 	                    $.fn.zTree.getZTreeObj("treeDemo").selectNode($scope.nodeList[nodeIndex]);
 	                    $("#dicKey").focus();
@@ -180,8 +190,7 @@
 	                        chkboxType: { "Y": "ps", "N": "ps" }
 	                    },
 	                    callback:{
-	                        onClick : showNode ,
-	                        onCheck : showNode
+	                        onCheck : cahceUserCheckedNode
 	                    },
 	                    view :{
 	                        showIcon: false,
