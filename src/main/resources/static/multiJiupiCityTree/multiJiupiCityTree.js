@@ -56,6 +56,10 @@
 		              				})
 		              			})
 		              		}
+		              		//当isDisabled为true时,初始化禁用的参数
+		              		if($scope.isDisabled){
+		              			initChkDisabledNode($scope.zNodes,$scope.leafNodes);
+		              		}
 		              		 initNodes(parentChecked);
 		              		$.fn.zTree.init($("#treeDemo"), setting, $scope.zNodes);
 		              		cahceUserCheckedNode();
@@ -99,10 +103,6 @@
 			                    			parentItem.open = true ;
 			                    			parentItem.checked = true ;
 			                    			childItem.checked = true;
-			                    			if($scope.isDisabled){
-			                    				parentItem.chkDisabled = true ;
-			                    				childItem.chkDisabled = true ;
-			                    			}
 			                    		}
 			                    	});
 			                	})
@@ -116,6 +116,25 @@
 	                			}
 		                	})
 	                	})
+	                }
+	                
+	                //初始化禁用的节点
+	                function initChkDisabledNode(currentTreeNode,receiveLeafNodes){
+	                	if(receiveLeafNodes && receiveLeafNodes.length>0 ){
+	              			angular.forEach(currentTreeNode,function(parentItem){
+	              				angular.forEach(parentItem.children,function(childItem){
+	              					angular.forEach(receiveLeafNodes,function(leafItem){
+	              						if(leafItem == childItem.id){
+	              							parentItem.open = true ;
+			                    			parentItem.checked = true ;
+			                    			childItem.checked = true;
+	              							parentItem.chkDisabled = true ;
+		                    				childItem.chkDisabled = true ;
+	              						}
+	              					})
+	              				})
+	              			})
+	              		}
 	                }
 	                
 	                function cahceUserCheckedNode(){
