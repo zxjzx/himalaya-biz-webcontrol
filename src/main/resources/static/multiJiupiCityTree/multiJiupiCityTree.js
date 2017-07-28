@@ -27,6 +27,8 @@
 		        	//copy $scope.leafNodes的值
 		        	var copyLeafNodes = angular.copy($scope.leafNodes);
 		        	
+		        	var chkDisabledNodeList = [];
+		        	
 		        	//获取运营模式字典
 		        	findDictionaryByCodeService.getDictionaryTypeDetailByCode("cityModel").then(function(data){
 		        		if(data.result==='success'){
