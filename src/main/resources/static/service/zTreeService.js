@@ -24,21 +24,17 @@
 	    		});
 	    	}else {
 		    	//add节点
-	    		var  addNodeList = [] ;
 	    		angular.forEach(checkedNodeList,function(nodeItem){
 	    			if(!nodeItem.isParent){
 	    				if(cacheJiupiCityIdList.indexOf(nodeItem.id) < 0){
-	    					addNodeList.push(nodeItem.id);
 	    					cacheJiupiCityIdList.push(nodeItem.id);
 	    				}
 	    			}
 	    		})
 	    		//remove节点
-	    		var  removeNodeList = [] ;
 	    		angular.forEach(notCheckedNodeList,function(nodeItem){
 	    			if(!nodeItem.isParent){
 	    				if(cacheJiupiCityIdList.indexOf(nodeItem.id) >= 0){
-	    					removeNodeList.push(nodeItem.id);
 	    					angular.forEach(cacheJiupiCityIdList,function(cacheItem,index){
 	    						if(nodeItem.id == cacheItem){
 	    							cacheJiupiCityIdList.splice(index,1)
@@ -49,7 +45,6 @@
 	    		})
 	    		
 	    	}
-	    	console.log(cacheJiupiCityIdList);
 	    }
 
 	    /**
