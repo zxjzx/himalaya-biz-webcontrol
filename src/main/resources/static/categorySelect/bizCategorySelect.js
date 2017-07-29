@@ -17,12 +17,12 @@
 			changePLevel:"=",
 			changeSLevel:"="
 		},
-        templateUrl: "../static/categorySelect/categorySelect.html",
+        templateUrl: "../static/categorySelect/bizcategorySelect.html",
 		controller:["$scope","$http",function($scope,$http){
 			
 			//获得类目类别
 			$scope.getCategoryClass = function(){
-				$http.get("componentCtrl/getDictionaryTypeDetailByTypeCode/CategoryClass.action").success(function(data){
+				$http.get("bizwebcontrol/dictionary/getDictionaryType/CategoryClass.action").success(function(data){
 					if(data.result==="success"){
 						$scope.CategotryClassList = data.data.items ;
 						$scope.CategotryClassList.unshift({"code":"","name":"请选择"})
@@ -40,7 +40,7 @@
 			$scope.getCategoryClass();
 			//获得类目
 			$scope.findCategory = function() {
-				  $scope.categoryVo.categoryClass.code && $http.post('common/findAllCategoryList/'+$scope.categoryVo.categoryClass.code).success(function(result) {
+				  $scope.categoryVo.categoryClass.code && $http.post('bizwebcontrol/category/findAllCategoryList/'+$scope.categoryVo.categoryClass.code).success(function(result) {
                   	if (result.result == 'success') {
                           $scope.menuData = result.data.menuData;
                           $scope.menuData.unshift({"id":"","label":"请选择","level":[]});
@@ -69,7 +69,7 @@
             	  	}else if($scope.categoryObj.partnerId){
             	  		$scope.categoryObj.categoryClassId = $scope.categoryObj.partnerId ;
             	  	}
-            	  	$scope.categoryObj.categoryClassId && $http.post("common/getProductCategoryDetail/"+$scope.categoryObj.categoryClassId).success(function(data){
+            	  	$scope.categoryObj.categoryClassId && $http.post("bizwebcontrol/category/findAllCategoryList/"+$scope.categoryObj.categoryClassId).success(function(data){
     					if(data.result==="success"){
     						$scope.categoryVo.categoryClass ={} ;
     						$scope.categoryVo.categoryClass.code = data.data.categoryClassCode ;
@@ -79,25 +79,25 @@
               }
 		}]
 	}
-}])
+}]);
            
 	//初始化数据
-	categorySelectModule.service('categoryInitService',function(){
-		this.init=function(config){
-			 
-			config.vo = {};
-			config.changePLevel = function(){
-				config.vo.secondCategoryId = "" ; 
-				config.vo.firstCategoryId = config.vo.pLevel.id ;
-            };
-            config.changeSLevel = function(){
-            	config.vo.secondCategoryId = config.vo.sLevel.id ;
-            };
-            config.showCategory = true ;
-         
-		}
-		
-	})
+//	categorySelectModule.service('categoryInitService',function(){
+//		this.init=function(config){
+//			 
+//			config.vo = {};
+//			config.changePLevel = function(){
+//				config.vo.secondCategoryId = "" ; 
+//				config.vo.firstCategoryId = config.vo.pLevel.id ;
+//            };
+//            config.changeSLevel = function(){
+//            	config.vo.secondCategoryId = config.vo.sLevel.id ;
+//            };
+//            config.showCategory = true ;
+//         
+//		}
+//		
+//	})
 
 
 
