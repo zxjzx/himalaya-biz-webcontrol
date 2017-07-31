@@ -45,6 +45,9 @@
 		        		jiupiCityTreeService.findJiupiCityListByCityMode($scope.vo.cityMode)
 		              	  .then(function(result){
 		              		$scope.zNodes = jiupiCityTreeService.convertModel(result.list);
+		              		if($scope.vo.cityMode==-1){
+		              			zTreeService.setAllJiupiCity($scope.zNodes);
+		              		}
 		              		var parentChecked = [];
 		              		if(copyLeafNodes && copyLeafNodes.length>0 ){
 		              			angular.forEach($scope.zNodes,function(parentItem){
