@@ -1,12 +1,15 @@
 <div class="row">
 <!-- 酒批城市选择控件 -->
 	<div class="col-md-6">
-		<select id="jiupiProvince" ng-change=""  ng-model="jiupiCityVo.procince" class="form-control"  ng-options="item as item.name for item in provinceList track by item.name"> </select>
+		<select  class="form-control" ng-change="jiupiCityVo.cityId=null;changeJiupiProvince(jiupiCityVo);"  ng-model="jiupiCityVo.provinceObj"
+			ng-options="provinceItem as provinceItem.province for provinceItem in allJiupiCityList track by provinceItem.province"> 
+			<option value="" ng-hide="hidePleaseSelect"> 请选择 </option>
+		</select>
 	</div>
 	<div class="col-md-6">
-		<select  id="jiupiCity" ng-change="changeCity(cityVo);"  ng-model="cityVo.city" class="form-control"   
-			ng-options="item as item.name for item  in cityList  track by item.name">
-				<option  value="">请选择</option>
+		<select  class="form-control"  ng-change="changeJiupiCity(jiupiCityVo);"  ng-model="jiupiCityVo.cityId" 
+			ng-options="cityItem.id as cityItem.name for cityItem in jiupiCityVo.provinceObj.jiupiCityList">
+			<option value="" ng-hide="hidePleaseSelect"> 请选择 </option>
     	</select>
 	</div>
 </div>
