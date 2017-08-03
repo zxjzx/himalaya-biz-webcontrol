@@ -16,6 +16,7 @@
 				hidePleaseSelect :'=' ,
 				changeJiupiProvince : '=' ,
 				changeJiupiCity : '=' ,
+				isDisabled : '=' 
 			},
 			templateUrl:'../static/jiupiCitySelect/ejpJiupiCitySelect.html',
 			controller:["$scope","$http",'ejpJiupiCityService',function($scope,$http,ejpJiupiCityService){
