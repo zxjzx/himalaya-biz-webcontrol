@@ -95,11 +95,13 @@
 		
 		//初始化已经存在的数据
 		this.initHasExistedData = function(existedList){
+			
 			hasExistedList = existedList ;
 		}
 		
 		//初始化入参数据
 		this.cacheDataList  = function(params){
+			
 			currentPageDataList = params.itemList ; 
 			isDisabled = params.isDisabled ;
 			initHasExistedData();
