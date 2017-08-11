@@ -18,13 +18,10 @@
 		var currentPageDataList = [] ;
 		//此次保存前就存在的数据(一般用与禁用的数据)
 		var hasExistedIdList = [] ;
-		var hasExistedObjList = [] ;
 		//原始的存在的数据
 		var originalExistedList = [] ;
 		//选中的数据Id集合
 		var hasCheckedIdList = [] ;
-		//选中的列表数据对象集合
-		var hasCheckedObjList = [] ;
 		//全选状态
 		var allCheckState ;
 		//是否禁用
@@ -146,17 +143,11 @@
 		//取消弹框时，清空之前所选
 		this.cancelSelected = function(){
 			hasCheckedIdList = [] ;
-			hasCheckedObjList = [] ;
 		}
 		
 		//获取选中的Id集合（用于外部调用，获取所需的值）
 		this.getCheckedIdList = function(){
 			return hasCheckedIdList ;
-		}
-		
-		//获取选中的的数据对象集合（用于外部调用，获取所需的值）
-		this.getCheckedObjList = function(){
-			return hasCheckedObjList ;
 		}
 		
 		//获取与id匹配的对象数据
@@ -172,8 +163,6 @@
 		
 		//获取删除和添加的数据对象集合（用于外部调用，获取所需的值）
 		this.getChangeDataObj = function(){
-			console.log(hasCheckedIdList);
-			console.log(originalExistedList);
 			//删除和添加的数据集合
 			var changedDataObj = {
 				add:{ //添加的数据集合
@@ -194,7 +183,7 @@
 			});
 			//remove的数据集合
 			angular.forEach(originalExistedList,function(existedIdItem){
-				if(hasCheckedIdList.indexOf(existedIdItem) < 0){
+				if(hasExistedIdList.indexOf(existedIdItem) < 0){
 					changedDataObj.remove.idList.push(existedIdItem);
 					changedDataObj.remove.dataObjList.push(getDataById(existedIdItem));
 				}
