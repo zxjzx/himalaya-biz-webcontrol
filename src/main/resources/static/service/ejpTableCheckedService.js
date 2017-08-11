@@ -18,55 +18,39 @@
 		var currentPageDataList = [] ;
 		//此次保存前就存在的数据(一般用与禁用的数据)
 		var hasExistedIdList = [] ;
+		var hasExistedObjList = [] ;
 		//原始的存在的数据
-		var originalExistedList = [] ;
+		var originalExistedIdList = [] ;
 		//选中的数据Id集合
 		var hasCheckedIdList = [] ;
+		var hasCheckedObjList = [] ;
 		//全选状态
 		var allCheckState ;
 		//是否禁用
 		var isDisabled ;
 		
-		//add选中的数据
-		var addChecked = function(item){
-			if(hasCheckedIdList.indexOf(item.id) < 0){
-				hasCheckedIdList.push(item.id);
-			}
-		}
-		//remove选中的数据
-		var removeChecked = function(item){
-			if(hasCheckedIdList.indexOf(item.id) >= 0){
-				var index =  hasCheckedIdList.indexOf(item.id);
-				hasCheckedIdList.splice(index,1);
-			}
-			//删除已存在的数据(一般用于已经存在的数据进行再操作)
-			if(!isDisabled){
-				if(hasExistedIdList.indexOf(item.id) >= 0){
-	        		var index = hasExistedIdList.indexOf(item.id) ;
-	        		hasExistedIdList.splice(index,1);
-	        	}
-			}
+		//初始化已经存在的数据
+		this.cacheHasExistedData = function(params){
+			isDisabled = params.isDisabled ;
+			originalExistedIdList = params.hasExistedIdList ;
+			hasExistedIdList = angular.copy(params.hasExistedIdList) ;
+			hasExistedObjList = angular.copy(params.hasExistedObjList) ;
+			
 		}
 		
-		//判断全选状态
-		var isAllCheck = function(){
-			allCheckState = true;
-        	angular.forEach(currentPageDataList,function(item) {
-        		if(!hasCheckedIdList.length || hasCheckedIdList.indexOf(item.id) < 0){
-        			allCheckState = false;
-            	}
-           });
-		}
-		
-		//逐个选中操作
-		var updateSelected = function(checkedWay,item,checkType){
-			if(checkedWay == 'add'){
-				addChecked(item) ;
-	        }
-	        if(checkedWay == 'remove'){
-	        	removeChecked(item);
-	        }
-	        isAllCheck(); 
+		//初始化入参数据
+		this.cacheDataList  = function(initParam){
+			currentPageDataList = initParam.itemList ; 
+			//保存翻页的数据
+			currentPage = initParam.currentPage ;
+			if(pageList.indexOf(currentPage) < 0){
+				pageList.push(currentPage);
+				allPageDataList = allPageDataList.concat(currentPageDataList);
+			}
+			initHasExistedData();
+			initLastCheckedData();
+			isAllCheck();
+			return allCheckState ;
 		}
 		
 		//初始化未操作前就存在的数据
@@ -78,6 +62,7 @@
 						item.disabled = true ;
 					}else {
 						hasCheckedIdList = hasExistedIdList ;
+						hasCheckedObjList = hasExistedObjList ;
 					}
 				}
 			})
@@ -92,27 +77,14 @@
 			});
 		}
 		
-		//初始化已经存在的数据
-		this.cacheHasExistedData = function(existedList){
-			originalExistedList = existedList ;
-			hasExistedIdList = angular.copy(existedList) ;
-		}
-		
-		//初始化入参数据
-		this.cacheDataList  = function(params){
-			currentPageDataList = params.itemList ; 
-			//保存翻页的数据
-			currentPage = params.currentPage ;
-			if(pageList.indexOf(currentPage) < 0){
-				pageList.push(currentPage);
-				allPageDataList = allPageDataList.concat(currentPageDataList);
-			}
-			
-			isDisabled = params.isDisabled ;
-			initHasExistedData();
-			initLastCheckedData();
-			isAllCheck();
-			return allCheckState ;
+		//判断全选状态
+		var isAllCheck = function(){
+			allCheckState = true;
+        	angular.forEach(currentPageDataList,function(item) {
+        		if(!hasCheckedIdList.length || hasCheckedIdList.indexOf(item.id) < 0){
+        			allCheckState = false;
+            	}
+           });
 		}
 		
 		//全选操作
@@ -140,14 +112,55 @@
 	        return allCheckState ;
 		}
 		
+		//逐个选中操作
+		var updateSelected = function(checkedWay,item,checkType){
+			if(checkedWay == 'add'){
+				addChecked(item) ;
+	        }
+	        if(checkedWay == 'remove'){
+	        	removeChecked(item);
+	        }
+	        isAllCheck(); 
+		}
+		
+		//add选中的数据
+		var addChecked = function(item){
+			if(hasCheckedIdList.indexOf(item.id) < 0){
+				hasCheckedIdList.push(item.id);
+				hasCheckedObjList.push(item);
+			}
+		}
+		//remove选中的数据
+		var removeChecked = function(item){
+			if(hasCheckedIdList.indexOf(item.id) >= 0){
+				var index =  hasCheckedIdList.indexOf(item.id);
+				hasCheckedIdList.splice(index,1);
+				hasCheckedObjList.splice(index,1);
+			}
+			//删除已存在的数据(一般用于已经存在的数据进行再操作)
+			if(!isDisabled){
+				if(hasExistedIdList.indexOf(item.id) >= 0){
+	        		var index = hasExistedIdList.indexOf(item.id) ;
+	        		hasExistedIdList.splice(index,1);
+	        		hasExistedObjList.splice(index,1);
+	        	}
+			}
+		}
+		
 		//取消弹框时，清空之前所选
 		this.cancelSelected = function(){
 			hasCheckedIdList = [] ;
+			hasCheckedObjList = [] ;
 		}
 		
 		//获取选中的Id集合（用于外部调用，获取所需的值）
 		this.getCheckedIdList = function(){
 			return hasCheckedIdList ;
+		}
+		
+		//获取选中的对象的集合（用于外部调用，获取所需的值）
+		this.getCheckedObjList = function(){
+			return hasCheckedObjList ;
 		}
 		
 		//获取与id匹配的对象数据
@@ -176,13 +189,13 @@
 			}
 			//add的数据集合
 			angular.forEach(hasCheckedIdList,function(checkedIdItem){
-				if(originalExistedList.indexOf(checkedIdItem) < 0){
+				if(originalExistedIdList.indexOf(checkedIdItem) < 0){
 					changedDataObj.add.idList.push(checkedIdItem);
 					changedDataObj.add.dataObjList.push(getDataById(checkedIdItem));
 				}
 			});
 			//remove的数据集合
-			angular.forEach(originalExistedList,function(existedIdItem){
+			angular.forEach(originalExistedIdList,function(existedIdItem){
 				if(hasExistedIdList.indexOf(existedIdItem) < 0){
 					changedDataObj.remove.idList.push(existedIdItem);
 					changedDataObj.remove.dataObjList.push(getDataById(existedIdItem));
