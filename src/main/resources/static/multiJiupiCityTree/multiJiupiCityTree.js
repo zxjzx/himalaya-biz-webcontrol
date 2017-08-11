@@ -16,7 +16,8 @@
 	            cityModelIsRequired:'=',
 	            cityIsRequired:'=',
 	            isDisabled:'=',
-	            defaultCityMode : '='
+	            defaultCityMode : '=',
+	            hideCitymode :'=',
 	        },
 	        templateUrl:  '../static/multiJiupiCityTree/multiJiupiCityTree.html',
 	        controller: ['$rootScope','$scope','$http','jiupiCityTreeService','findDictionaryByCodeService','zTreeService',
@@ -39,7 +40,7 @@
 		        	
 		        	//默认运营模式为所有城市
 		        	$scope.vo.cityMode = $scope.defaultCityMode ? $scope.defaultCityMode : -1;
-		        	
+		        			        	 
 		            //根据运营模式获取酒批城市
 		        	var findJiupiCityByCityMode = function(){
 		        		jiupiCityTreeService.findJiupiCityListByCityMode($scope.vo.cityMode)
