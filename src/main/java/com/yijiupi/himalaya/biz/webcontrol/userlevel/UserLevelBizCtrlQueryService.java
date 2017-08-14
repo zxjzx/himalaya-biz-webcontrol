@@ -8,10 +8,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.yijiupi.himalaya.base.search.PageList;
 import com.yijiupi.himalaya.biz.webcontrol.userlevel.converter.BizUserLevelConverter;
 import com.yijiupi.himalaya.biz.webcontrol.userlevel.vo.BizUserLevelVO;
 import com.yijiupi.himalaya.trading.setting.domain.bizuserlevel.BizUserLevel;
+import com.yijiupi.himalaya.trading.setting.search.BizUserLevelSearchDTO;
 import com.yijiupi.himalaya.trading.setting.service.IBizUserLevelService;
 
 /**  
@@ -26,9 +26,9 @@ public class UserLevelBizCtrlQueryService {
 	private IBizUserLevelService iBizUserLevelService ;
 	
 	public List<BizUserLevelVO> findBizUserLevelList(){
-		PageList<BizUserLevel> pageList = iBizUserLevelService.findBizUserLevelList() ;
-		List<BizUserLevel> dataList = pageList.getDataList();
-		return BizUserLevelConverter.toVOList(dataList);
+		BizUserLevelSearchDTO bizUserLevelSearchDTO = new BizUserLevelSearchDTO();
+		List<BizUserLevel> voList = iBizUserLevelService.findBizUserLevelList(bizUserLevelSearchDTO) ;
+		return BizUserLevelConverter.toVOList(voList);
 	}
 	
 }
