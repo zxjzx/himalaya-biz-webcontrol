@@ -48,19 +48,7 @@
 	    				}
 	    			}
 	    		})
-	    		
 	    	}
-	    	
-	    	//获取选中的酒批城市对象集合
-	    	angular.forEach(allJiupiCityObjList,function(parentItem){
-	    		angular.forEach(parentItem.children,function(childItem){
-	    			angular.forEach(cacheJiupiCityIdList,function(cityIdItem){
-	    	    		if(cityIdItem == childItem.id){
-	    	    			checkedJiupiCityObjList.push(childItem);
-	    	    		}
-	    	    	})
-	    		})
-	    	})
 	    }
 	    
 	    //储存所有的酒批城市
@@ -79,6 +67,16 @@
 	     * 获取选中的jiupiCityObj集合 
 	     */
 	    this.getJiupiCityObjList = function(){
+	    	//获取选中的酒批城市对象集合
+	    	angular.forEach(allJiupiCityObjList,function(parentItem){
+	    		angular.forEach(parentItem.children,function(childItem){
+	    			angular.forEach(cacheJiupiCityIdList,function(cityIdItem){
+	    	    		if(cityIdItem == childItem.id){
+	    	    			checkedJiupiCityObjList.push(childItem);
+	    	    		}
+	    	    	})
+	    		})
+	    	})
 	    	return checkedJiupiCityObjList ;
 	    }
 	}]);
