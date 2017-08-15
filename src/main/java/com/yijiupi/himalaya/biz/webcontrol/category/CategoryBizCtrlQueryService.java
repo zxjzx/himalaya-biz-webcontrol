@@ -12,15 +12,25 @@ import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.yijiupi.himalaya.biz.webcontrol.category.vo.CascadeProductCategoryVO;
 import com.yijiupi.himalaya.biz.webcontrol.category.vo.CategoryItem;
+import com.yijiupi.himalaya.masterdata.productcategory.domain.DisplayCategoryWithChild;
 import com.yijiupi.himalaya.masterdata.productcategory.domain.ProductCategory;
+import com.yijiupi.himalaya.masterdata.productcategory.domain.StatisticsCategoryWithChild;
+import com.yijiupi.himalaya.masterdata.productcategory.service.IDisplayCategoryQueryService;
 import com.yijiupi.himalaya.masterdata.productcategory.service.IProductCategoryQueryService;
+import com.yijiupi.himalaya.masterdata.productcategory.service.IStatisticsCategoryQueryService;
 
 @Service
 public class CategoryBizCtrlQueryService {
 
 	@Reference
 	private IProductCategoryQueryService iProductCategoryQueryService;
-
+	
+	@Reference
+	private IDisplayCategoryQueryService iDisplayCategoryQueryService;
+	
+	@Reference
+	private IStatisticsCategoryQueryService iStatisticsCategoryQueryService ;
+	
 	/**
 	 * 获取产品类目下的所有一级二级产品类目,主要用做查询条件
 	 * @param categoryClass 0酒批 1掌批 2招商
@@ -43,4 +53,15 @@ public class CategoryBizCtrlQueryService {
 		CascadeProductCategoryVO ro = new CascadeProductCategoryVO(result);
 		return ro;
 	}
+	
+	public List<DisplayCategoryWithChild> listDisplayCategoryWithChild(Integer bizUserDisplayClass){
+		List<DisplayCategoryWithChild> displayCategoryWithChildList = iDisplayCategoryQueryService.listDisplayCategoryWithChild(bizUserDisplayClass);
+		return displayCategoryWithChildList ;
+	}
+	
+	public List<StatisticsCategoryWithChild> listStatisticsCategoryWithChild(){
+		List<StatisticsCategoryWithChild> statisticsCategoryWithChildList = iStatisticsCategoryQueryService.listStatisticsCategoryWithChild();
+		return statisticsCategoryWithChildList ;
+	}
+	
 }

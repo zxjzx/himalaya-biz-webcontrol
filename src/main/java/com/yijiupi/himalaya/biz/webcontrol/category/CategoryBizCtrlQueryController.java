@@ -3,6 +3,8 @@
  */
 package com.yijiupi.himalaya.biz.webcontrol.category;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yijiupi.himalaya.biz.webcontrol.category.vo.CascadeProductCategoryVO;
 import com.yijiupi.himalaya.biz.webcontrol.consts.WebConstant;
 import com.yijiupi.himalaya.biz.webcontrol.pagemodel.BaseResult;
+import com.yijiupi.himalaya.biz.webcontrol.pagemodel.ListResult;
 import com.yijiupi.himalaya.biz.webcontrol.pagemodel.ROResult;
+import com.yijiupi.himalaya.masterdata.productcategory.domain.DisplayCategoryWithChild;
+import com.yijiupi.himalaya.masterdata.productcategory.domain.StatisticsCategoryWithChild;
 
 /**
  * Description: 类目查询控制器
@@ -38,5 +43,30 @@ public class CategoryBizCtrlQueryController {
 		result.setData(ro);
 		result.setResult(WebConstant.RESULT_SUCCESS);
 		return result;
+	}
+	
+	/**
+	 * 根据会员展示类别查询所有类目及其子类目
+	 * @param bizUserDisplayClass 会员展示类别
+	 * @return 所有类目及其子类目
+	 */
+	@RequestMapping(value = "/templates/bizwebcontrol/category/listDisplayCategoryWithChild/{bizUserDisplayClass}" ,method = RequestMethod.POST)
+	public BaseResult listDisplayCategoryWithChild(@PathVariable("bizUserDisplayClass") Integer bizUserDisplayClass){
+		List<DisplayCategoryWithChild> displayCategoryWithChildList = categoryQueryService.listDisplayCategoryWithChild(bizUserDisplayClass);
+		ListResult<DisplayCategoryWithChild> result = new ListResult<>(displayCategoryWithChildList);
+		result.setResult(WebConstant.RESULT_SUCCESS);
+		return result ;
+	}
+	
+	/**
+	 * 查询所有类目及其子类目
+	 * @return 所有类目及其子类目
+	 */
+	@RequestMapping(value="/templates/bizwebcontrol/category/listStatisticsCategoryWithChild" , method = RequestMethod.GET)
+	public BaseResult listStatisticsCategoryWithChild(){
+		List<StatisticsCategoryWithChild> statisticsCategoryWithChildList = categoryQueryService.listStatisticsCategoryWithChild();
+		ListResult<StatisticsCategoryWithChild> result = new ListResult<>(statisticsCategoryWithChildList);
+		result.setResult(WebConstant.RESULT_SUCCESS);
+		return result ;
 	}
 }
