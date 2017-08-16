@@ -35,6 +35,11 @@
 				}
 				findProductStatisticsCategoryList();
 				
+				//类目回显
+				if($scope.statisticsCategoryVo && $scope.statisticsCategoryVo.categoryId){
+					$scope.statisticsCategoryVo = productCategoryService.getCategoryObjByCategoryId($scope.statisticsCategoryVo.categoryId);
+				}
+				
 				//选择一级类目时触发
 				$scope.initPartnerCategory = function(){
 					$scope.statisticsPartnerCategoryId = $scope.statisticsCategoryVo.partnerCategoryObj.id ;
