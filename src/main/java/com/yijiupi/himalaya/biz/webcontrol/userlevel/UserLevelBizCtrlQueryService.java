@@ -11,24 +11,21 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.yijiupi.himalaya.biz.webcontrol.userlevel.converter.BizUserLevelConverter;
 import com.yijiupi.himalaya.biz.webcontrol.userlevel.vo.BizUserLevelVO;
 import com.yijiupi.himalaya.trading.setting.domain.bizuserlevel.BizUserLevel;
-import com.yijiupi.himalaya.trading.setting.search.BizUserLevelSearchDTO;
 import com.yijiupi.himalaya.trading.setting.service.IBizUserLevelService;
 
-/**  
+/**
  * 会员等级
  * @author lipan
- * @date 2017年8月10日 上午10:21:15  
+ * @date 2017年8月10日 上午10:21:15
  */
 @Service
 public class UserLevelBizCtrlQueryService {
-	
+
 	@Reference
-	private IBizUserLevelService iBizUserLevelService ;
-	
-	public List<BizUserLevelVO> findBizUserLevelList(){
-		BizUserLevelSearchDTO bizUserLevelSearchDTO = new BizUserLevelSearchDTO();
-		List<BizUserLevel> voList = iBizUserLevelService.findBizUserLevelList(bizUserLevelSearchDTO) ;
+	private IBizUserLevelService iBizUserLevelService;
+
+	public List<BizUserLevelVO> findBizUserLevelList() {
+		List<BizUserLevel> voList = iBizUserLevelService.findBizUserLevelList();
 		return BizUserLevelConverter.toVOList(voList);
 	}
-	
 }
