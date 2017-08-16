@@ -22,8 +22,6 @@
 			controller : ['$http','$scope','productCategoryService','findDictionaryByCodeService',
 			              function($http,$scope,productCategoryService,findDictionaryByCodeService){
 				
-				console.log($scope.displayCategoryVo);
-				
 				//获取会员展示类别
 				var getBizUserDisplayClassList = function(){
 					findDictionaryByCodeService.getDictionaryTypeDetailByCode("BizUserDisplayClass").then(function(data){
