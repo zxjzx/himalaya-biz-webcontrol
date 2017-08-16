@@ -38,11 +38,33 @@
 			})
 		}
 		
+		//产品统计类目Api***************
 		var cacheAllStatisticsCategoryList = [] ;
 		
 		//缓存产品所有统计类目列表
 		this.cacheAllStatisticsCategoryData = function(allStatisticsCategoryList){
 			cacheAllStatisticsCategoryList = allStatisticsCategoryList ;
+		}
+		
+		//根据categoryId查找相对应的统计类目
+		this.getCategoryObjByCategoryId = function(categoryId){
+			var categoryObj = {
+				partnerCategoryObj : {},
+				subcategoryObj : {}
+			} ;
+			angular.forEach(cacheAllStatisticsCategoryList,function(firstItem){
+				if(categoryId == firstItem.id){
+					categoryObj.partnerCategoryObj = firstItem ;
+				}else {
+					angular.forEach(firstItem.statisticsCategoryWithChildList,function(secondItem){
+						if(categoryId == secondItem.id){
+							categoryObj.partnerCategoryObj = firstItem ;
+							categoryObj.subcategoryObj = secondItem ;
+						}
+					})
+				}
+			})
+			return categoryObj ;
 		}
 	}])
 }())
