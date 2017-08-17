@@ -32,7 +32,7 @@
 				
 				//获取产品展示类目列表
 				var findProductDisplayCategoryList = function(bizUserDisplayClass){
-					productCategoryService.listDisplayCategoryWithChild(bizUserDisplayClass).then(function(data){
+					productCategoryService.listDisplayCategoryWithChildNoBrand(bizUserDisplayClass).then(function(data){
 						console.log(data);
 						if(data.result==='success'){
 							$scope.allDisplayCategoryList = data.list ;
