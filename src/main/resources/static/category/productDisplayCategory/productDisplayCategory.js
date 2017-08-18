@@ -11,12 +11,21 @@
 			restrict : 'E',
 			transclude : true ,
 			scope : {
-				displayCategoryVo : '=' ,
-				displayPartnerCategoryId : '=' ,
-				displaySubcategoryId : '=' ,
-				changeBizUserDisplayClass : '&' ,
-				changeDisplayPartnerCategory : '&' ,
-				changeDisplaySubcategory : '&' ,
+				/**
+				 * 展示类目的vo对象，
+				 * 数据结构 : displayCategoryVo
+				 * displayCategoryVo = {
+				 * 		bizUserDisplayClass : {}, //会员展示类别
+				 * 		partnerCategoryObj : {} , //选取的父类目对象
+				 * 		subcategoryObj ：{}, //选取的子类目对象
+				 * }
+				 */
+				displayCategoryVo : '=' , 
+				displayPartnerCategoryId : '=' ,         //展示类目的父类目Id
+				displaySubcategoryId : '=' ,	         //展示类目的子类目Id
+				changeBizUserDisplayClass : '&' , 		 //外部函数，选择会员展示类别的触发函数
+				changeDisplayPartnerCategory : '&' ,     //外部函数，选择父类目的触发函数
+				changeDisplaySubcategory : '&'  	     //外部函数，选择子类目的触发函数
 			},
 			templateUrl : '../static/category/productDisplayCategory/productDisplayCategory.html',
 			controller : ['$http','$scope','productCategoryService','findDictionaryByCodeService',
@@ -33,9 +42,8 @@
 				//获取产品展示类目列表
 				var findProductDisplayCategoryList = function(bizUserDisplayClass){
 					productCategoryService.listDisplayCategoryWithChildNoBrand(bizUserDisplayClass).then(function(data){
-						console.log(data);
 						if(data.result==='success'){
-							$scope.allDisplayCategoryList = data.list ;
+							$scope.displayCategoryVo.allDisplayCategoryList = data.list ;
 						}
 					})
 				}
