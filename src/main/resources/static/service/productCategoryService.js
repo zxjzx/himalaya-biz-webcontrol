@@ -24,12 +24,12 @@
 		}
 		
 		//获取产品展示类目
-		this.listDisplayCategoryWithChild = function(bizUserDisplayClass){
+		this.listDisplayCategoryWithChildNoBrand = function(bizUserDisplayClass){
 			return $q(function(resolve,reject){
 				
 				$http({
 					method : 'post' ,
-					url:'bizwebcontrol/category/listDisplayCategoryWithChild/' + bizUserDisplayClass 
+					url:'bizwebcontrol/category/listDisplayCategoryWithChildNoBrand/' + bizUserDisplayClass 
 				}).success(function(data){
 					resolve(data) ;
 				}).error(function(data){
