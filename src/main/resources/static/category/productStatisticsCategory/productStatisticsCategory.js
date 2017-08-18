@@ -22,23 +22,20 @@
 			controller : ['$http','$scope','productCategoryService',
 			              function($http,$scope,productCategoryService){
 				
-				console.log($scope.statisticsCategoryVo);
-				
 				//获取产品展示类目列表
 				var findProductStatisticsCategoryList = function(bizUserDisplayClass){
 					productCategoryService.listStatisticsCategoryWithChild().then(function(data){
-						console.log(data);
 						if(data.result==='success'){
 							$scope.allStatisticsCategoryList = data.list ;
+							productCategoryService.cacheAllStatisticsCategoryData($scope.allStatisticsCategoryList);
+							//类目回显
+							if($scope.statisticsCategoryVo && $scope.statisticsCategoryVo.categoryId){
+								$scope.statisticsCategoryVo = productCategoryService.getCategoryObjByCategoryId($scope.statisticsCategoryVo.categoryId);
+							}
 						}
 					})
 				}
 				findProductStatisticsCategoryList();
-				
-				//类目回显
-				if($scope.statisticsCategoryVo && $scope.statisticsCategoryVo.categoryId){
-					$scope.statisticsCategoryVo = productCategoryService.getCategoryObjByCategoryId($scope.statisticsCategoryVo.categoryId);
-				}
 				
 				//选择一级类目时触发
 				$scope.initPartnerCategory = function(){
