@@ -48,7 +48,7 @@
 				//选择一级类目时触发
 				$scope.initPartnerCategory = function(){
 					$scope.statisticsPartnerCategoryId = $scope.statisticsCategoryVo.partnerCategoryObj ? $scope.statisticsCategoryVo.partnerCategoryObj.id : null ;
-					$scope.statisticsCategoryVo.subcategoryObj = [] ;
+					$scope.statisticsCategoryVo.subcategoryObj  = {} ;
 				}
 				
 				//选择二级类目时触发
