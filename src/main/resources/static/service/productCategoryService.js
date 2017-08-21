@@ -63,7 +63,7 @@
 						}
 					})
 				}
-			})
+			});
 			return categoryObj ;
 		}
 		
@@ -77,7 +77,8 @@
 				if(statisticsPartnerCategoryId == partnerItem.id){
 					categoryObj.partnerCategoryObj = partnerItem ;
 				}
-			})
+			});
+			return categoryObj ;
 		}
 		
 		//已知二级类目Id，找对应的一级类目，二级类目对象
@@ -93,7 +94,7 @@
 						categoryObj.subcategoryObj = secondItem ;
 					}
 				})
-			})
+			});
 			return categoryObj ;
 		}
 	}])

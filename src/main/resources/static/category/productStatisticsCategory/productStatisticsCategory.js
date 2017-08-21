@@ -22,7 +22,7 @@
 			templateUrl : '../static/category/productStatisticsCategory/productStatisticsCategory.html',
 			controller : ['$http','$scope','productCategoryService',
 			              function($http,$scope,productCategoryService){
-				
+							
 				//获取产品展示类目列表
 				var findProductStatisticsCategoryList = function(bizUserDisplayClass){
 					productCategoryService.listStatisticsCategoryWithChild().then(function(data){
@@ -36,7 +36,7 @@
 								if($scope.statisticsPartnerCategoryId && !$scope.statisticsSubcategoryId){
 									$scope.statisticsCategoryVo = productCategoryService.getCategoryObjByPartnerCategoryId($scope.statisticsPartnerCategoryId);
 								}else if($scope.statisticsPartnerCategoryId && $scope.statisticsSubcategoryId){
-									$scope.statisticsCategoryVo = productCategoryService.getCategoryObjByPartnerCategoryId($scope.statisticsSubcategoryId);
+									$scope.statisticsCategoryVo = productCategoryService.getCategoryObjBySubcategoryId($scope.statisticsSubcategoryId);
 								}
 							}
 							
@@ -48,6 +48,7 @@
 				//选择一级类目时触发
 				$scope.initPartnerCategory = function(){
 					$scope.statisticsPartnerCategoryId = $scope.statisticsCategoryVo.partnerCategoryObj ? $scope.statisticsCategoryVo.partnerCategoryObj.id : null ;
+					$scope.statisticsCategoryVo.subcategoryObj = [] ;
 				}
 				
 				//选择二级类目时触发
