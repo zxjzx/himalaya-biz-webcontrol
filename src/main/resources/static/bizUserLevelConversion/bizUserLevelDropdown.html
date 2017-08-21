@@ -1,0 +1,4 @@
+<select  id="bizUserLevel" name="bizUserLevelName" class="form-control" ng-change="changeUserLevel();"  
+	ng-model="userLevelId" ng-disabled="isDisabled"
+	ng-options="levelItem.id as levelItem.name for levelItem in userLevelList"> 
+</select>
