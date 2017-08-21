@@ -34,7 +34,6 @@ public class BizUserLevelConverter {
 		BizUserLevelVO vo = new BizUserLevelVO() ;
 		vo.setId(bizUserLevel.getId());
 		vo.setLevelName(bizUserLevel.getLevelName());
-		vo.setSequence(bizUserLevel.getSequence());
 		return vo ;
 	}
 	

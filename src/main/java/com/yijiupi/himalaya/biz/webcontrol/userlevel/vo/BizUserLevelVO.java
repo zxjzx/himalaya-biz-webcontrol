@@ -22,8 +22,6 @@ public class BizUserLevelVO implements Serializable {
 	
 	private String levelName;
 	
-	private Integer sequence;
-	
 	public Integer getId() {
 		return id;
 	}
@@ -38,13 +36,5 @@ public class BizUserLevelVO implements Serializable {
 	
 	public void setLevelName(String levelName) {
 		this.levelName = levelName;
-	}
-	
-	public Integer getSequence() {
-		return sequence;
-	}
-	
-	public void setSequence(Integer sequence) {
-		this.sequence = sequence;
 	}
 }
