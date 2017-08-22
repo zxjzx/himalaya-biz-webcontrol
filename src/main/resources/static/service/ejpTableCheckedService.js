@@ -56,7 +56,7 @@
 		//初始化未操作前就存在的数据
 		var initHasExistedData = function(){
 			angular.forEach(currentPageDataList,function(item){
-				if(hasExistedIdList.indexOf(item.id) >=0){
+				if(hasExistedIdList && hasExistedIdList.indexOf(item.id) >=0){
 					if(isDisabled){
 						item.flag = true ;
 						item.disabled = true ;
