@@ -48,6 +48,13 @@
 						})
 					}
 				}
+				
+				//选择市触发
+				var getJiupiCityObj = function(cityId){
+					if(cityId){
+						 $scope.jiupiCityVo.cityObj = ejpJiupiCityService.getCityObjByCityId(cityId);
+					}
+				}
 			}]
 		 }	
 	}])
