@@ -33,7 +33,7 @@ public class CategoryBizCtrlQueryController {
 	 * @param bizUserDisplayClass 会员展示类别
 	 * @return 所有类目及其子类目
 	 */
-	@RequestMapping(value = "/templates/bizwebcontrol/category/listDisplayCategoryWithChildNoBrand/{bizUserDisplayClass}" ,method = RequestMethod.POST)
+	@RequestMapping(value = "/bizwebcontrol/category/listDisplayCategoryWithChildNoBrand/{bizUserDisplayClass}" ,method = RequestMethod.POST)
 	public BaseResult listDisplayCategoryWithChildNoBrand(@PathVariable("bizUserDisplayClass") Integer bizUserDisplayClass){
 		List<DisplayCategoryWithChild> displayCategoryWithChildList = categoryQueryService.listDisplayCategoryWithChildNoBrand(bizUserDisplayClass);
 		ListResult<DisplayCategoryWithChild> result = new ListResult<>(displayCategoryWithChildList);
@@ -45,7 +45,7 @@ public class CategoryBizCtrlQueryController {
 	 * 查询所有类目及其子类目
 	 * @return 所有类目及其子类目
 	 */
-	@RequestMapping(value="/templates/bizwebcontrol/category/listStatisticsCategoryWithChild" , method = RequestMethod.GET)
+	@RequestMapping(value="/bizwebcontrol/category/listStatisticsCategoryWithChild" , method = RequestMethod.GET)
 	public BaseResult listStatisticsCategoryWithChild(){
 		List<StatisticsCategoryWithChild> statisticsCategoryWithChildList = categoryQueryService.listStatisticsCategoryWithChild();
 		ListResult<StatisticsCategoryWithChild> result = new ListResult<>(statisticsCategoryWithChildList);
