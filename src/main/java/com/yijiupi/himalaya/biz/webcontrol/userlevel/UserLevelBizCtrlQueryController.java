@@ -25,7 +25,7 @@ public class UserLevelBizCtrlQueryController {
 	@Autowired 
 	private UserLevelBizCtrlQueryService userLevelBizCtrlQueryService ;
 	
-	@RequestMapping(value = "/templates/bizwebcontrol/bizuserLevel/findBizUserLevelList", method = RequestMethod.GET)
+	@RequestMapping(value = "/bizwebcontrol/bizuserLevel/findBizUserLevelList", method = RequestMethod.GET)
 	public BaseResult findBizUserLevelList(){
 		List<BizUserLevelVO> voList = userLevelBizCtrlQueryService.findBizUserLevelList();
 		ListResult<BizUserLevelVO> result = new ListResult<>(voList);

@@ -28,7 +28,7 @@ public class DictionaryBizCtrlQueryController {
 	/**
 	 * 根据字典类型编码获取详情
 	 */
-	@RequestMapping(value = "/templates/bizwebcontrol/dictionary/getDictionaryType/{typeCode}", method = RequestMethod.GET)
+	@RequestMapping(value = "/bizwebcontrol/dictionary/getDictionaryType/{typeCode}", method = RequestMethod.GET)
 	public BaseResult getDictionaryType(@PathVariable("typeCode") String typeCode) {
 		DictionaryTypeVO vo = dictionaryQueryService.getDictionaryType(typeCode);
 		ROResult<DictionaryTypeVO> result = new ROResult<DictionaryTypeVO>();

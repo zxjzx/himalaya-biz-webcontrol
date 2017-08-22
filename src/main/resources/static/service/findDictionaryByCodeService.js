@@ -10,7 +10,7 @@
 			   
 	           $http({
 	               method: 'get',
-	               url: 'bizwebcontrol/dictionary/getDictionaryType/' + code,
+	               url: '/bizwebcontrol/dictionary/getDictionaryType/' + code,
 	           }).success(function (data) {
 	               resolve(data)
 	           }).error(function (data) {
