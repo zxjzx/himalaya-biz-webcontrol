@@ -13,7 +13,7 @@ import com.yijiupi.himalaya.biz.webcontrol.pagemodel.ListResult;
 import com.yijiupi.himalaya.masterdata.adminuser.domain.org.JiupiCity;
 
 @RestController
-@RequestMapping("/templates/bizwebcontrol/jiupicityfullname")
+@RequestMapping("/bizwebcontrol/jiupicityfullname")
 public class JiupiCityFullNameBizCtrlQueryController {
 
 	@Autowired

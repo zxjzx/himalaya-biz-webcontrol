@@ -14,7 +14,7 @@ import com.yijiupi.himalaya.biz.webcontrol.pagemodel.ListResult;
 import com.yijiupi.himalaya.masterdata.adminuser.dto.ProvinceAndSubCityDTO;
 
 @RestController
-@RequestMapping("/templates/bizwebcontrol/jiupicitymultitree")
+@RequestMapping("/bizwebcontrol/jiupicitymultitree")
 public class JiupiCityMultiTreeBizCtrlQueryController {
 
 	@Autowired
