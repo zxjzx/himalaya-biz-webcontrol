@@ -8,7 +8,7 @@
 	
 	.service("productCategoryService",['$q','$http',function($q,$http){
 		
-		//获取产品统计类目列表
+		//获取产品统计类目列表接口
 		this.listStatisticsCategoryWithChild = function(){
 			return $q(function(resolve,reject){
 				
@@ -23,22 +23,9 @@
 			})
 		}
 		
-		//获取产品展示类目
-		this.listDisplayCategoryWithChildNoBrand = function(bizUserDisplayClass){
-			return $q(function(resolve,reject){
-				
-				$http({
-					method : 'post' ,
-					url:'/bizwebcontrol/category/listDisplayCategoryWithChildNoBrand/' + bizUserDisplayClass 
-				}).success(function(data){
-					resolve(data) ;
-				}).error(function(data){
-					reject(data.message);
-				});
-			})
-		}
-		
-		//产品统计类目Api***************
+		/**
+		 * 产品统计类目Api
+		 */
 		var cacheAllStatisticsCategoryList = [] ;
 		
 		//缓存产品所有统计类目列表
@@ -97,5 +84,6 @@
 			});
 			return categoryObj ;
 		}
+		
 	}])
 }())
