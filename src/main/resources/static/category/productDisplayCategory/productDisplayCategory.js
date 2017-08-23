@@ -57,13 +57,13 @@
 				
 				//选择一级类目时触发
 				$scope.initPartnerCategory = function(){
-					$scope.displayPartnerCategoryId = $scope.displayCategoryVo.partnerCategoryObj.id ;
+					$scope.displayPartnerCategoryId = $scope.displayCategoryVo.partnerCategoryObj ? $scope.displayCategoryVo.partnerCategoryObj.id : "" ;
 					$scope.displaySubcategoryId = "" ;
 				}
 				
 				//选择二级类目时触发
 				$scope.initSubcategory = function(){
-					$scope.displaySubcategoryId = $scope.displayCategoryVo.subcategoryObj.id ;
+					$scope.displaySubcategoryId = $scope.displayCategoryVo.subcategoryObj ? $scope.displayCategoryVo.subcategoryObj.id : "" ;
 				}
 				
 			}],
