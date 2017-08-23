@@ -53,7 +53,7 @@
 						for(var i=0 ; i<bizUserLevelList.length ; i++){
 							var item = bizUserLevelList[i] ;
 							if(i == bizUserLevelList.length-1){
-								item.name = item.levelName ;
+								item.name = "仅"+ item.levelName + "会员" ;
 								$scope.userLevelList.push(item) ;
 							}else {
 								item.name = item.levelName + "会员及以上" ;
