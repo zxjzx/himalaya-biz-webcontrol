@@ -37,7 +37,7 @@
 				var getBizUserDisplayClassList = function(){
 					findDictionaryByCodeService.getDictionaryTypeDetailByCode("BizUserDisplayClass").then(function(data){
 						$scope.bizUserDisplayClassList = data.data.items;
-						productDisplayCategoryService.cacheBizUserDisplayClassData(bizUserDisplayClassList);
+						productDisplayCategoryService.cacheBizUserDisplayClassData($scope.bizUserDisplayClassList);
 						//回显会员展示类别
 						if($scope.bizUserDisplayClassCode){
 							$scope.displayCategoryVo = productDisplayCategoryService.getBizUseDisplayClassObjByCode($scope.bizUserDisplayClassCode);
