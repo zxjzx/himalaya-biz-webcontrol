@@ -59,7 +59,7 @@
 				if(hasExistedIdList && hasExistedIdList.indexOf(item.id) >=0){
 					if(isDisabled){
 						item.flag = true ;
-						item.disabled = true ;
+						item.isDisabled = true ;
 					}else {
 						hasCheckedIdList = hasExistedIdList ;
 						hasCheckedObjList = hasExistedObjList ;
