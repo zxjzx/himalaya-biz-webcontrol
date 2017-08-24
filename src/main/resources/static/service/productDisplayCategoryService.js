@@ -45,13 +45,11 @@
 		this.getBizUseDisplayClassObjByCode = function(bizUserDisplayClassCode){
 			//返回的展示类目对象
 			var displayCategoryObj = {
-				bizUserDisplayClass : {} ,
-				partnerCategoryObj : {},
-				subcategoryObj : {}
+				bizUserDisplayClassObj : {} ,
 			} ;
 			angular.forEach(cacheBizUserDisplayClassList,function(classItem){
 				if(classItem.code == bizUserDisplayClassCode){
-					displayCategoryObj.bizUserDisplayClass = classItem ;
+					displayCategoryObj.bizUserDisplayClassObj = classItem ;
 				}
 			})
 		}
@@ -60,7 +58,7 @@
 		this.getCategoryObjByCategoryId = function(categoryId){
 			//返回的展示类目对象
 			var displayCategoryObj = {
-				bizUserDisplayClass : {} ,
+				bizUserDisplayClassObj : {} ,
 				partnerCategoryObj : {},
 				subcategoryObj : {}
 			} ;
@@ -83,7 +81,7 @@
 		this.getCategoryObjByPartnerCategoryId = function(displayPartnerCategoryId){
 			//返回的展示类目对象
 			var displayCategoryObj = {
-				bizUserDisplayClass : {} ,
+				bizUserDisplayClassObj : {} ,
 				partnerCategoryObj : {},
 				subcategoryObj : {}
 			} ;
@@ -99,7 +97,7 @@
 		this.getCategoryObjBySubcategoryId = function(subcategoryId){
 			//返回的展示类目对象
 			var displayCategoryObj = {
-				bizUserDisplayClass : {} ,
+				bizUserDisplayClassObj : {} ,
 				partnerCategoryObj : {},
 				subcategoryObj : {}
 			} ;

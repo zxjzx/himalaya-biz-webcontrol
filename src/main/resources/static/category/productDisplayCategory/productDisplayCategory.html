@@ -1,7 +1,7 @@
 <div class="row">
 	<!-- 产品展示类目 -->
 	<div  class="col-md-4" >
-		<ui-select ng-model="displayCategoryVo.bizUserDisplayClass"  theme="selectize"   
+		<ui-select ng-model="displayCategoryVo.bizUserDisplayClassObj"  theme="selectize"   
 			 data-ng-change="displayCategoryVo.partnerCategoryObj=null;displayCategoryVo.subcategoryObj=null;
 			 initBizUserDisplayClass();changeBizUserDisplayClass();"> 
 			<ui-select-match placeholder="请选择">{{$select.selected.name}}</ui-select-match>

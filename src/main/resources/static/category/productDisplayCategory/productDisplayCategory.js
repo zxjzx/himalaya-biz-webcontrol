@@ -15,7 +15,7 @@
 				 * 展示类目的vo对象，
 				 * 数据结构 : displayCategoryVo
 				 * displayCategoryVo = {
-				 * 		bizUserDisplayClass : {}, //会员展示类别
+				 * 		bizUserDisplayClassObj : {}, //会员展示类别
 				 * 		partnerCategoryObj : {} , //选取的父类目对象
 				 * 		subcategoryObj ：{}, //选取的子类目对象
 				 * }
@@ -69,7 +69,7 @@
 				
 				//选择会员展示类别触发
 				$scope.initBizUserDisplayClass = function(){
-					findProductDisplayCategoryList($scope.displayCategoryVo.bizUserDisplayClass.code);
+					findProductDisplayCategoryList($scope.displayCategoryVo.bizUserDisplayClassObj.code);
 					$scope.displayPartnerCategoryId = "" ;
 					$scope.displaySubcategoryId = "" ;
 				}
