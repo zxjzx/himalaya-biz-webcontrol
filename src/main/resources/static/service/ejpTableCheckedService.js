@@ -8,12 +8,10 @@
 	
 	//checkbox Api服务
 	.service("ejpTableCheckboxService",['$q','$http',function($q,$http){
-		//初始化当前页
-		var currentPage ;
-		//翻页数据集合
-		var pageList = [] ;
-		//保存所有翻过页数的数据
-		var allPageDataList = [] ;
+		//保存所有浏览过的数据对象集合
+		var allBrowsedDataList = [] ;
+		//保存所有浏览过的数据Id的集合
+		var allBrowsedDataIdList = [] ;
 		//表格获取的当前页的列表数据
 		var currentPageDataList = [] ;
 		//此次保存前就存在的数据(一般用与禁用的数据)
@@ -41,12 +39,12 @@
 		//初始化入参数据
 		this.cacheDataList  = function(initParam){
 			currentPageDataList = initParam.itemList ; 
-			//保存翻页的数据
-			currentPage = initParam.currentPage ;
-			if(pageList.indexOf(currentPage) < 0){
-				pageList.push(currentPage);
-				allPageDataList = allPageDataList.concat(currentPageDataList);
-			}
+			angular.forEach(currentPageDataList,function(currentPageItem){
+				if(allBrowsedDataIdList.indexOf(currentPageItem.id) < 0){
+					allBrowsedDataIdList.push(currentPageItem.id) ;
+					allBrowsedDataList.push(currentPageItem);
+				}
+			})
 			initHasExistedData();
 			initLastCheckedData();
 			isAllCheck();
@@ -166,7 +164,7 @@
 		//获取与id匹配的对象数据
 		var getDataById = function(id){
 			var singleDataObj ;
-			angular.forEach(allPageDataList,function(item){
+			angular.forEach(allBrowsedDataList,function(item){
 				if(id == item.id){
 					singleDataObj = item ;
 				}
