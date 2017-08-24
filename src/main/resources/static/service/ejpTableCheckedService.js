@@ -56,10 +56,13 @@
 			angular.forEach(currentPageDataList,function(item){
 				if(hasExistedIdList && hasExistedIdList.indexOf(item.id) >=0){
 					if(isDisabled){
+						item.flag = true ;
 						item.isDisabled = true ;
 					}
-					hasCheckedIdList = hasExistedIdList ;
-					hasCheckedObjList = hasExistedObjList ;
+					else {
+						hasCheckedIdList = hasExistedIdList ;
+						hasCheckedObjList = hasExistedObjList ;
+					}
 				}
 			})
 		}
