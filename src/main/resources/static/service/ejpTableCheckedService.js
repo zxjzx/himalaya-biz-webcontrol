@@ -67,7 +67,7 @@
 			})
 		}
 		
-		//初始化每次操作改变的数据
+		//初始化当前页在上次操作中已经选中的数据
 		var initLastCheckedData = function(){
 			angular.forEach(currentPageDataList,function(item){
 				if(hasCheckedIdList.indexOf(item.id) >=0){
