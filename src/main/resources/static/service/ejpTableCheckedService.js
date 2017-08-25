@@ -26,6 +26,26 @@
 		var allCheckState ;
 		//是否禁用
 		var isDisabled ;
+		//表格数据Id(针对该服务可能遇到数据中需要比较的id字段名称可能不一致的情况,重新定义一个变量用于逻辑数据)
+		var tableDataId ;
+		
+		//id转换
+		this.convertedId = function(item){
+			if(item.id){
+				tableDataId = item.id ;
+			}
+			return tableDataId ;
+		}
+		
+		//类目id转换
+		this.convertedCategoryId = function(item){
+			if(item.subCategoryId){
+				tableDataId = item.subCategoryId ;
+			}else if(item.id){
+				tableDataId = item.id ;
+			}
+			return tableDataId ;
+		}
 		
 		//初始化已经存在的数据
 		this.cacheHasExistedData = function(params){
@@ -33,15 +53,14 @@
 			originalExistedIdList = params.hasExistedIdList ;
 			hasExistedIdList = angular.copy(params.hasExistedIdList) ;
 			hasExistedObjList = angular.copy(params.hasExistedObjList) ;
-			
 		}
 		
 		//初始化入参数据
 		this.cacheDataList  = function(initParam){
 			currentPageDataList = initParam.itemList ; 
 			angular.forEach(currentPageDataList,function(currentPageItem){
-				if(allBrowsedDataIdList.indexOf(currentPageItem.id) < 0){
-					allBrowsedDataIdList.push(currentPageItem.id) ;
+				if(allBrowsedDataIdList.indexOf(currentPageItem.tableDataId) < 0){
+					allBrowsedDataIdList.push(currentPageItem.tableDataId) ;
 					allBrowsedDataList.push(currentPageItem);
 				}
 			})
@@ -54,7 +73,7 @@
 		//初始化未操作前就存在的数据
 		var initHasExistedData = function(){
 			angular.forEach(currentPageDataList,function(item){
-				if(hasExistedIdList && hasExistedIdList.indexOf(item.id) >=0){
+				if(hasExistedIdList && hasExistedIdList.indexOf(item.tableDataId) >=0){
 					if(isDisabled){
 						item.flag = true ;
 						item.isDisabled = true ;
@@ -70,7 +89,7 @@
 		//初始化当前页在上次操作中已经选中的数据
 		var initLastCheckedData = function(){
 			angular.forEach(currentPageDataList,function(item){
-				if(hasCheckedIdList.indexOf(item.id) >=0){
+				if(hasCheckedIdList.indexOf(item.tableDataId) >=0){
 					item.flag = true ;
 				}
 			});
@@ -80,7 +99,7 @@
 		var isAllCheck = function(){
 			allCheckState = true;
         	angular.forEach(currentPageDataList,function(item) {
-        		if(!hasCheckedIdList.length || hasCheckedIdList.indexOf(item.id) < 0){
+        		if(!hasCheckedIdList.length || hasCheckedIdList.indexOf(item.tableDataId) < 0){
         			allCheckState = false;
             	}
            });
@@ -124,22 +143,22 @@
 		
 		//add选中的数据
 		var addChecked = function(item){
-			if(hasCheckedIdList.indexOf(item.id) < 0){
-				hasCheckedIdList.push(item.id);
+			if(hasCheckedIdList.indexOf(item.tableDataId) < 0){
+				hasCheckedIdList.push(item.tableDataId);
 				hasCheckedObjList.push(item);
 			}
 		}
 		//remove选中的数据
 		var removeChecked = function(item){
-			if(hasCheckedIdList.indexOf(item.id) >= 0){
-				var index =  hasCheckedIdList.indexOf(item.id);
+			if(hasCheckedIdList.indexOf(item.tableDataId) >= 0){
+				var index =  hasCheckedIdList.indexOf(item.tableDataId);
 				hasCheckedIdList.splice(index,1);
 				hasCheckedObjList.splice(index,1);
 			}
 			//删除已存在的数据(一般用于已经存在的数据进行再操作)
 			if(!isDisabled){
-				if(hasExistedIdList.indexOf(item.id) >= 0){
-	        		var index = hasExistedIdList.indexOf(item.id) ;
+				if(hasExistedIdList.indexOf(item.tableDataId) >= 0){
+	        		var index = hasExistedIdList.indexOf(item.tableDataId) ;
 	        		hasExistedIdList.splice(index,1);
 	        		hasExistedObjList.splice(index,1);
 	        	}
@@ -166,7 +185,7 @@
 		var getDataById = function(id){
 			var singleDataObj ;
 			angular.forEach(allBrowsedDataList,function(item){
-				if(id == item.id){
+				if(id == item.tableDataId){
 					singleDataObj = item ;
 				}
 			});
