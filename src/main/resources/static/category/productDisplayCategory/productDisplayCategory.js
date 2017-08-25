@@ -70,6 +70,7 @@
 				//选择会员展示类别触发
 				$scope.initBizUserDisplayClass = function(){
 					findProductDisplayCategoryList($scope.displayCategoryVo.bizUserDisplayClassObj.code);
+					$scope.bizUserDisplayClassCode = $scope.displayCategoryVo.bizUserDisplayClassObj ? $scope.displayCategoryVo.bizUserDisplayClassObj.code : "" ;
 					$scope.displayPartnerCategoryId = "" ;
 					$scope.displaySubcategoryId = "" ;
 				}

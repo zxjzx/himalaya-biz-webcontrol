@@ -92,7 +92,7 @@
                 url: '/bizwebcontrol/bizuserLevel/findBizUserLevelList'
             }).success(function (data) {
             	self.cacheBizUserLevel = data;
-                resolve(data);
+                resolve(self.cacheBizUserLevel);
             }).error(function (data) {
                 reject(data.message);
             });

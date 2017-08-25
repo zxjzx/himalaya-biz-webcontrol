@@ -58,7 +58,6 @@
 		this.getCategoryObjByCategoryId = function(categoryId){
 			//返回的展示类目对象
 			var displayCategoryObj = {
-				bizUserDisplayClassObj : {} ,
 				partnerCategoryObj : {},
 				subcategoryObj : {}
 			} ;
@@ -81,7 +80,6 @@
 		this.getCategoryObjByPartnerCategoryId = function(displayPartnerCategoryId){
 			//返回的展示类目对象
 			var displayCategoryObj = {
-				bizUserDisplayClassObj : {} ,
 				partnerCategoryObj : {},
 				subcategoryObj : {}
 			} ;
@@ -97,7 +95,6 @@
 		this.getCategoryObjBySubcategoryId = function(subcategoryId){
 			//返回的展示类目对象
 			var displayCategoryObj = {
-				bizUserDisplayClassObj : {} ,
 				partnerCategoryObj : {},
 				subcategoryObj : {}
 			} ;
