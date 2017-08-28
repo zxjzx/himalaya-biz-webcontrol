@@ -52,6 +52,7 @@
 					displayCategoryObj.bizUserDisplayClassObj = classItem ;
 				}
 			})
+			return displayCategoryObj ;
 		}
 		
 		//根据categoryId查找相对应的展示类目对象(针对于不知道该类目是一级类目还是二级类目的情况)
