@@ -10,7 +10,7 @@
 	<artifactId>himalaya-biz-webcontrol</artifactId>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<destDir>${project.build.outputDirectory}/META-INF/resources/</destDir>
+		<destDir>${project.basedir}/target/classes/META-INF/resources/</destDir>
 	</properties>
 	
 	<build>
