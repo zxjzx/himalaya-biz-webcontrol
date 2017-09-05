@@ -21,8 +21,6 @@
 			templateUrl:'../static/jiupiCitySelect/ejpJiupiCitySelect.html',
 			controller:["$scope","$http",'ejpJiupiCityService',function($scope,$http,ejpJiupiCityService){
 				
-				$scope.jiupiCityVo.provinceObj = {} ;
-				
 				// 获取酒批城市
 				var getJiupiCity = function(){
 					ejpJiupiCityService.listProvinceAllCitiesDTO(-1).then(function(data){
@@ -41,6 +39,7 @@
 						angular.forEach($scope.allJiupiCityList,function(provinceItem){
 							angular.forEach(provinceItem.jiupiCityList,function(cityItem){
 								if($scope.jiupiCityVo.cityId == cityItem.id){
+									$scope.jiupiCityVo.provinceObj = {} ;
 									$scope.jiupiCityVo.provinceObj.province = cityItem.province ;
 									$scope.jiupiCityVo.provinceObj.jiupiCityList = provinceItem.jiupiCityList ;
 								}
