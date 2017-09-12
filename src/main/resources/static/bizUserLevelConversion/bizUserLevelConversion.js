@@ -46,7 +46,6 @@
 				
 				var getBizUserLevelList = function(){
 					BizUserLevelService.getBizUseLevelList().then(function(data){
-						console.log(data);
 						var bizUserLevelList = angular.copy(data.list);
 						//缓存数据
 						BizUserLevelService.cacheBizUserLevelData(bizUserLevelList);

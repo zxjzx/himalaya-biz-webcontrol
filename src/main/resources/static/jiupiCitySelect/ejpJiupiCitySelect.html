@@ -9,7 +9,7 @@
 	</div>
 	<div class="col-md-6">
 		<select  class="form-control"  ng-change="getJiupiCityObj(jiupiCityVo.cityId);changeJiupiCity(jiupiCityVo);"  ng-model="jiupiCityVo.cityId" 
-			ng-disabled="isDisabled"
+			ng-disabled="isDisabled || !jiupiCityVo.provinceObj" 
 			ng-options="cityItem.id as cityItem.name for cityItem in jiupiCityVo.provinceObj.jiupiCityList">
 			<option value="" ng-hide="hidePleaseSelect"> 请选择 </option>
     	</select>
