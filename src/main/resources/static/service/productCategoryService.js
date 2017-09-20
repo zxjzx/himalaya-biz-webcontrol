@@ -14,7 +14,7 @@
 				
 				$http({
 					method : 'get' ,
-					url:'/bizwebcontrol/category/listStatisticsCategoryWithChild' 
+					url:'bizwebcontrol/category/listStatisticsCategoryWithChild' 
 				}).success(function(data){
 					resolve(data) ;
 				}).error(function(data){

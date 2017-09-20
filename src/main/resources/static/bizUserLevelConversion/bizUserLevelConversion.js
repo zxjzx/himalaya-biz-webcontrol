@@ -88,7 +88,7 @@
 
             $http({
                 method: 'get',
-                url: '/bizwebcontrol/bizuserLevel/findBizUserLevelList'
+                url: 'bizwebcontrol/bizuserLevel/findBizUserLevelList'
             }).success(function (data) {
             	self.cacheBizUserLevel = data;
                 resolve(self.cacheBizUserLevel);

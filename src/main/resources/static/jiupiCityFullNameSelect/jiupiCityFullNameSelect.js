@@ -16,7 +16,7 @@
 			controller:["$scope","$http",function($scope,$http){
 				
 				$scope.getCityList = function(){
-					$http.get('/bizwebcontrol/jiupicityfullname/findAllJiupiCityList').success(function(data){
+					$http.get('bizwebcontrol/jiupicityfullname/findAllJiupiCityList').success(function(data){
 		        		if(data.result=="success"){
 		        			$scope.allCityList = data.list;
 		        			if(!$scope.isHideSelect){

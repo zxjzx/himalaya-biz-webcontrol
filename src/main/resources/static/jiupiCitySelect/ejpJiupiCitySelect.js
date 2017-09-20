@@ -67,7 +67,7 @@
 			   return $q(function (resolve, reject) {
 		           $http({
 		               method: 'get',
-		               url: '/bizwebcontrol/jiupicitymultitree/listProvinceAllCitiesDTO/' + cityMode,
+		               url: 'bizwebcontrol/jiupicitymultitree/listProvinceAllCitiesDTO/' + cityMode,
 		           }).success(function (data) {
 		               resolve(data)
 		           }).error(function (data) {

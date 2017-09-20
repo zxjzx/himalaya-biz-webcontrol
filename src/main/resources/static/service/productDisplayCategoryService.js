@@ -14,7 +14,7 @@
 				
 				$http({
 					method : 'post' ,
-					url:'/bizwebcontrol/category/listDisplayCategoryWithChildNoBrand/' + bizUserDisplayClass 
+					url:'bizwebcontrol/category/listDisplayCategoryWithChildNoBrand/' + bizUserDisplayClass 
 				}).success(function(data){
 					resolve(data) ;
 				}).error(function(data){

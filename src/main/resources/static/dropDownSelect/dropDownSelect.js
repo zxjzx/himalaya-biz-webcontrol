@@ -16,7 +16,7 @@
 			templateUrl:'../static/dropDownSelect/dropDownSelect.html',
 			controller:['$scope','$http',function($scope,$http){
 				$scope.dropDownSelect=function(){
-					 $http.get('/bizwebcontrol/dictionary/getDictionaryType/' + $scope.typeCode + '.action').success(function(response){
+					 $http.get('templates/bizwebcontrol/dictionary/getDictionaryType/' + $scope.typeCode + '.action').success(function(response){
 		                	if(response.result=='success'){
 		                		$scope.dropDownSelectList=response.data.items;
 		                	}
