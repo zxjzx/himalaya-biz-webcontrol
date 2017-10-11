@@ -14,13 +14,13 @@
 				typeCode:'@'
 			},
 			templateUrl:'../static/dropDownSelect/dropDownSelect.html',
-			controller:['$scope','$http',function($scope,$http){
+			controller:['$scope','$http','findDictionaryByCodeService',function($scope,$http,findDictionaryByCodeService){
 				$scope.dropDownSelect=function(){
-					 $http.get('templates/bizwebcontrol/dictionary/getDictionaryType/' + $scope.typeCode + '.action').success(function(response){
-		                	if(response.result=='success'){
-		                		$scope.dropDownSelectList=response.data.items;
-		                	}
-		                })
+                    findDictionaryByCodeService.getDictionaryTypeDetailByCode($scope.typecode).then(function (response) {
+                        if(response.result === 'success'){
+                            $scope.dropDownSelectList=response.data.items;
+                        }
+                    })
 					
 				}
 				$scope.dropDownSelect();

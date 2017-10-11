@@ -11,9 +11,9 @@
             template:'<span ng-repeat="dictionaryItem in dataShowList" ng-class="setStyle(judgetype)"\n' +
             '      ng-if="dictionaryItem.code==judgetype">{{dictionaryItem.name}}</span>',
             controller:['$scope','$http','findDictionaryByCodeService',function ($scope,$http,findDictionaryByCodeService) {
-                findDictionaryByCodeService.getDictionaryTypeDetailByCode($scope.typecode).then(function (data) {
-                    if(data.result === 'success'){
-                        $scope.dataShowList = data.data.items;
+                findDictionaryByCodeService.getDictionaryTypeDetailByCode($scope.typecode).then(function (response) {
+                    if(response.result === 'success'){
+                        $scope.dataShowList = response.data.items;
                     }
                 })
                 $scope.setStyle = function (colortype) {
