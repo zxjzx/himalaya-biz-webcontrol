@@ -1,6 +1,7 @@
 /**
  * <product-display-category-page ng-if="productInfo.categoryList" has-exist-category-list="categorys"></product-display-category-page>
-	productInfo.categoryList：页面加载时显示的类目						
+	productInfo.categoryList：页面加载时显示的类目
+	用时，js中要声明:$scope.categorys=[];				
  */
 (function () {
 	'use strict';
