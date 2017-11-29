@@ -7,8 +7,8 @@
             scope:{
                 filterCode:'@',//过滤的值
                 filterList:'=',//被过滤的List数组
-                codeValue:'@',
-                nameValue:'@',//显示的值
+                codeValue:'@',//对应code
+                nameValue:'@',//对应name
             },
             template:'<span ng-class="setStyle(filterCode)">{{filterList | codeFilter : filterCode : codeValue : nameValue}}</span>',
             controller:['$scope','$http',function ($scope,$http) {
