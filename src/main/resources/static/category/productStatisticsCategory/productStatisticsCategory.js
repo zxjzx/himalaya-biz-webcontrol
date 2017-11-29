@@ -16,13 +16,13 @@
 				statisticsPartnerCategoryId : '=' ,
 				statisticsSubcategoryId : '=' ,
 				statisticsCategoryId : '=' , //统计类目Id,一般用于不知道是一级类目还是二级类目的Id的数据回显
-				changeParentCategory : '&' ,
-				changeSubCategory : '&' ,
+				changeStatisticsPartnerCategory : '&' ,
+				changeStatisticsSubcategory : '&' ,
 			},
 			templateUrl : '../static/category/productStatisticsCategory/productStatisticsCategory.html',
 			controller : ['$http','$scope','productCategoryService',
 			              function($http,$scope,productCategoryService){
-							
+				
 				//获取产品展示类目列表
 				var findProductStatisticsCategoryList = function(bizUserDisplayClass){
 					productCategoryService.listStatisticsCategoryWithChild().then(function(data){
