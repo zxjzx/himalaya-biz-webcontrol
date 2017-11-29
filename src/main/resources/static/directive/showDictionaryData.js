@@ -10,7 +10,7 @@
                 codeValue:'@',//对应code
                 nameValue:'@',//对应name
             },
-            template:'<span ng-class="setStyle(filterCode)">{{filterList | codeFilter : filterCode : codeValue : nameValue}}{{}}</span>',
+            template:'<span ng-class="setStyle(filterCode)">{{filterList | codeFilter : filterCode : codeValue : nameValue}}</span>',
             controller:['$scope','$http',function ($scope,$http) {
             	$scope.labelColorList = ["success","danger","warning","primary","info"];
                 $scope.setStyle = function(code){
