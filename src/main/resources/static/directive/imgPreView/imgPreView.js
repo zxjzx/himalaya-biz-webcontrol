@@ -1,3 +1,16 @@
+
+/**
+ * 使用方法：将imgpreview.css和此文件引入，然后在html页面相关位置加上指令
+ * <img ng-src="{{item.cloudSrc}}" title="点击放大预览" width=200 height=200 class="{{item.id}}" enlarge-pic/>
+ * 
+ *	<div class="mask" close-Pic>
+ * 		<div class="mask-box"></div>
+ * 		<div class="big-pic-wrap">
+ *	      	<img src="" alt="" class="bigPic" />
+ *	      	<span class="close-pic"><i class="fa fa-close"></i></span> 
+ *	    </div>
+ *	</div>
+**/
 (function (){
 	'use strict';
 	angular.module('previewPicModule',[])
