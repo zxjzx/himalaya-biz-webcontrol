@@ -1,0 +1,35 @@
+<div class="form-group">
+	<label class="col-md-2 control-label">添加产品展示类目：</label>
+	<div class="col-md-4">
+		<a data-toggle="modal" ng-click="openAddCategory()" class="btn blue"><i
+			class="fa fa-plus"></i> 添加产品展示类目</a>
+	</div>
+</div>
+<div class="form-group">
+	<div class="col-md-9 col-md-offset-2">
+		<table
+			class="table table-striped table-bordered table-hover  table-btns">
+			<thead>
+				<tr class="heading">
+					<th width="25%">会员展示类别</th> 
+					<th width="25%">主类目</th>
+					<th width="25%">子类目</th>
+					<th width="25%">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="odd gradeX" ng-repeat="item in categorys">
+					<td ng-repeat="part in bizUserDisplayClassList"
+						ng-show="part.code == item.bizUserDisplayClass">{{part.name}}</td>
+					<td ng-bind="item.firstCategoryName"></td>
+					<td ng-bind="item.secondCategoryName"></td>
+					<td><a
+						ng-click="removeCategory(item.firstCategoryId,item.secondCategoryId)"
+						class="btn btn-xs default btn-editable"> <i
+							class="fa fa-trash-o"></i> 删除
+					</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
