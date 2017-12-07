@@ -26,8 +26,8 @@
 		var hasImportedList = [];//已导入的数据列表List
         var hasImportedIdList = [];//已导入的idList
         
-        var hasCheckedProductList = [];//新选中的列表
-        var hasCheckedProductIdList = [];//新选中的idList列表
+        var newCheckedProductList = [];//新选中的列表
+        var newCheckedProductIdList = [];//新选中的idList列表
         
         var currentPageDataList = [];//当前页用以比较的数据列表
         
@@ -36,31 +36,45 @@
       //表格数据Id(针对该服务可能遇到数据中需要比较的id字段名称可能不一致的情况,重新定义一个变量用于逻辑数据)
 		var tableDataId ;
 		
+		var currentIdName;
+		
       //id转换
         this.hasExistedDataList = function (params,idName){
         	tableDataId = idName;
-        	hasImportedList = params;
         	if(params.length == 0){
         		hasImportedList = [];
+        		newCheckedProductList = [];
+        		newCheckedProductIdList = [];
         		hasImportedIdList = [];
-        		hasCheckedProductList = [];
-        		hasCheckedProductIdList = [];
+        		currentPageDataList = [];
         		return;
         	}
+        	hasImportedList = [];
+    		newCheckedProductList = [];
+    		newCheckedProductIdList = [];
+    		hasImportedIdList = [];
+    		currentPageDataList = [];
     		params.forEach(function(item){
-    			if(hasImportedIdList.indexOf(item[idName]) === -1){
+    			hasImportedList.push(item);//已经导入的不用去重
+    			if(hasImportedIdList.indexOf(item[idName]) === -1){//用于比较的id要去重
     				hasImportedIdList.push(item[idName])
     			}
     		});
         };
         
         //比较先前的数据是否应该勾选
-        this.compareDataList = function(params){
-        	var num = null;
+        this.compareDataList = function(params,idName){
+        	if(idName){
+        		currentIdName = idName;
+        	}else{
+        		currentIdName = tableDataId;
+        	}
         	currentPageDataList = params;
-        	params.forEach(function (outerItem) {
+        	var num = null;
+        	currentPageDataList.forEach(function (outerItem) {
                 hasImportedIdList.forEach(function (innerItem) {
-                    if(outerItem[tableDataId] == innerItem){
+                	var compareId = outerItem[currentIdName];
+                    if(compareId == innerItem){
                         outerItem.flag = true;
                         outerItem.disab = true;
                         num ++ ;
@@ -83,12 +97,12 @@
             var action = checkbox.checked ? 'add' : 'remove';
             var allCheck = false;//全选按钮是否选中
             if(checkbox.checked){
-                hasCheckedProductList.push(item);
-                hasCheckedProductIdList.push(item[tableDataId]);
+                newCheckedProductList.push(item);
+                newCheckedProductIdList.push(item[currentIdName]);
             }else{
-                var index = hasCheckedProductList.indexOf(item);
-                hasCheckedProductList.splice(index,1);
-                hasCheckedProductIdList.splice(item[tableDataId]);
+                var index = newCheckedProductList.indexOf(item);
+                newCheckedProductList.splice(index,1);
+                newCheckedProductIdList.splice(item[currentIdName]);
             };
             currentPageDataList.forEach(function (item) {
                 if(item.flag){
@@ -107,21 +121,21 @@
         this.checkAll = function (allCheck) {
             currentPageDataList.forEach(function (item) {
                 item.flag = allCheck;
-                var index = hasCheckedProductIdList.indexOf(item[tableDataId]);
+                var index = newCheckedProductIdList.indexOf(item[tableDataId]);
                 if(item.flag){
                     if(index === -1){//没有这一项
-                        hasCheckedProductList.push(item);
-                        hasCheckedProductIdList.push(item[tableDataId]);
+                        newCheckedProductList.push(item);
+                        newCheckedProductIdList.push(item[tableDataId]);
                     }
                 }else{//取消全部选中
-                    if(hasCheckedProductIdList.length >0 && index > -1){//包含这一项
-                        hasCheckedProductList.splice(index,1);
-                        hasCheckedProductIdList.splice(index,1);
+                    if(newCheckedProductIdList.length >0 && index > -1){//包含这一项
+                        newCheckedProductList.splice(index,1);
+                        newCheckedProductIdList.splice(index,1);
                     }
                 };
 
-                if(hasCheckedProductIdList.length > 0 ){
-                    hasCheckedProductList.forEach(function (part) {
+                if(newCheckedProductIdList.length > 0 ){
+                    newCheckedProductList.forEach(function (part) {
                         if(part[tableDataId] == item[tableDataId]){
                             item.flag = true;
                         }
@@ -140,11 +154,11 @@
         this.cacheDataList = function(){
         	var num = null;
         	var allCheck = false;
-        	if(!hasCheckedProductIdList.length){
+        	if(!newCheckedProductIdList.length){
         		return allCheck;
         	}
         	currentPageDataList.forEach(function (outerItem) {
-                hasCheckedProductIdList.forEach(function (innerItem) {
+                newCheckedProductIdList.forEach(function (innerItem) {
                     if(outerItem[tableDataId] == innerItem){
                         outerItem.flag = true;
                         num ++ ;
@@ -159,12 +173,15 @@
         
         //返回已选中的所有数据（包括已置灰和新选中的所有产品）
         this.returnData = function (){
-        	hasCheckedProductList.forEach(function (item) {
+        	newCheckedProductList.forEach(function (item) {
                 if(hasImportedIdList.indexOf(item[tableDataId]) === -1){
                 	hasImportedList.push(item);
                 }
             })
-            return hasImportedList;
+            return {
+        		hasImportedList:hasImportedList,
+        		newCheckedProductList:newCheckedProductList,
+        	}
         }
 	}])
 }())
