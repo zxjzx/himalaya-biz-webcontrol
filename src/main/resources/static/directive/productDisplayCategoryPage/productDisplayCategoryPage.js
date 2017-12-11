@@ -80,11 +80,10 @@
 	                       			 bizUserDisplayClassName:data.bizUserDisplayClassObj.name,
 	                       			 firstCategoryId:data.partnerCategoryObj.id,
 	                       			 firstCategoryName:data.partnerCategoryObj.name,
-	                       			 secondCategoryId:data.subcategoryObj.id,
-	                       			 secondCategoryName:data.subcategoryObj.name
+	                       			 secondCategoryId:data.subcategoryObj?data.subcategoryObj.id:null,
+	                       			 secondCategoryName:data.subcategoryObj?data.subcategoryObj.name:null,
 	                       	 }
                         	$scope.categorys.push($scope.newData);
-                            console.log($scope.categorys);
                             $scope.hasExistCategoryList = $scope.categorys;
                         }
                         

@@ -39,21 +39,30 @@
 		var currentIdName;
 		
       //id转换
-        this.hasExistedDataList = function (params,idName){
+        this.hasExistedDataList = function (params,idName,idList){
         	tableDataId = idName;
+        	
+        	
+        	
         	if(params.length == 0){
         		hasImportedList = [];
         		newCheckedProductList = [];
         		newCheckedProductIdList = [];
         		hasImportedIdList = [];
         		currentPageDataList = [];
+        		if(idList){
+            		hasImportedIdList = idList;
+            	}
         		return;
         	}
+        	
+        	
         	hasImportedList = [];
     		newCheckedProductList = [];
     		newCheckedProductIdList = [];
     		hasImportedIdList = [];
     		currentPageDataList = [];
+    		
     		params.forEach(function(item){
     			hasImportedList.push(item);//已经导入的不用去重
     			if(hasImportedIdList.indexOf(item[idName]) === -1){//用于比较的id要去重
@@ -159,10 +168,17 @@
         	}
         	currentPageDataList.forEach(function (outerItem) {
                 newCheckedProductIdList.forEach(function (innerItem) {
-                    if(outerItem[tableDataId] == innerItem){
-                        outerItem.flag = true;
-                        num ++ ;
-                    }
+                	if(outerItem[tableDataId]){
+                		if(outerItem[tableDataId] == innerItem){
+                			outerItem.flag = true;
+                			num ++ ;
+                		}
+                	}else{
+                		if(outerItem[currentIdName] == innerItem){
+                			outerItem.flag = true;
+                			num ++ ;
+                		}
+                	}
                 });
             });
             if(num === currentPageDataList.length){
