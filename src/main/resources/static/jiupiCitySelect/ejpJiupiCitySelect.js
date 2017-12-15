@@ -35,7 +35,7 @@
 				
 				//初始化酒批城市
 				var initJiupiCity = function(){
-					if($scope.jiupiCityVo.cityId){
+					if($scope.jiupiCityVo && $scope.jiupiCityVo.cityId){
 						angular.forEach($scope.allJiupiCityList,function(provinceItem){
 							angular.forEach(provinceItem.jiupiCityList,function(cityItem){
 								if($scope.jiupiCityVo.cityId == cityItem.id){
