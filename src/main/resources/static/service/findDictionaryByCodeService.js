@@ -6,7 +6,6 @@
 		   
 		//获取字典
 	   this.getDictionaryTypeDetailByCode = function(code){
-
 		   return $q(function (resolve, reject) {
 			   
 	           $http({
@@ -67,7 +66,7 @@
                });
                return d.promise;
 		   }else{
-               //当已经存在时走这个
+               //当字典已经存在时返回这个
                resolveReturnDataList(self.storeDictionaryDataService.codeResultList);
                return d.promise;
            }
