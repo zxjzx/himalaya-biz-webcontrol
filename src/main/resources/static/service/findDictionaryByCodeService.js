@@ -6,11 +6,12 @@
 		   
 		//获取字典
 	   this.getDictionaryTypeDetailByCode = function(code){
+
 		   return $q(function (resolve, reject) {
 			   
 	           $http({
 	               method: 'get',
-	               url: 'bizwebcontrol/dictionary/getDictionaryType/' + code,
+	               url: 'bizwebcontrol/dictionary/getDictionaryType/' + code
 	           }).success(function (data) {
 	               resolve(data)
 	           }).error(function (data) {
@@ -54,7 +55,7 @@
            }
 
            if(filterDictionaryQueryDataList.length > 0){
-               $http.post('common/queryDictionaryTypeMapByCodeList',filterDictionaryQueryDataList).success(function (response) {
+               $http.post('bizwebcontrol/dictionary/queryDictionaryTypeMapByCodeList',filterDictionaryQueryDataList).success(function (response) {
                    for(var i in response.data){
                        var itemName = i + "List";
                        self.storeDictionaryDataService.codeResultList[itemName] = response.data[i];

@@ -3,16 +3,17 @@
  */
 package com.yijiupi.himalaya.biz.webcontrol.dictionary;
 
+import com.yijiupi.himalaya.trading.setting.domain.dictionary.DictionaryType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.yijiupi.himalaya.biz.webcontrol.consts.WebConstant;
 import com.yijiupi.himalaya.biz.webcontrol.dictionary.vo.DictionaryTypeVO;
 import com.yijiupi.himalaya.biz.webcontrol.pagemodel.BaseResult;
 import com.yijiupi.himalaya.biz.webcontrol.pagemodel.ROResult;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Description: 字典查询控制器
@@ -36,4 +37,19 @@ public class DictionaryBizCtrlQueryController {
 		result.setResult(WebConstant.RESULT_SUCCESS);
 		return result;
 	}
+
+	/**
+	 * 根据字典类型编码获取字典详情Map
+	 * @param codeList
+	 * @return
+	 */
+	@RequestMapping(value = "/templates/bizwebcontrol/dictionary/queryDictionaryTypeMapByCodeList", method = RequestMethod.POST)
+	public BaseResult getDictionaryType(@RequestBody List<String> codeList) {
+		Map<String, DictionaryType> stringDictionaryTypeMap = dictionaryQueryService.queryDictionaryTypeMapByCodeList(codeList);
+		ROResult result = new ROResult<DictionaryTypeVO>();
+		result.setData(stringDictionaryTypeMap);
+		result.setResult(WebConstant.RESULT_SUCCESS);
+		return result;
+	}
+
 }
