@@ -10,6 +10,9 @@ import com.yijiupi.himalaya.biz.webcontrol.dictionary.vo.DictionaryTypeVO;
 import com.yijiupi.himalaya.trading.setting.domain.dictionary.DictionaryType;
 import com.yijiupi.himalaya.trading.setting.service.IDictionaryTypeService;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class DictionaryBizCtrlQueryService {
 
@@ -23,5 +26,9 @@ public class DictionaryBizCtrlQueryService {
 		}
 		DictionaryTypeVO vo = new DictionaryTypeVO(model);
 		return vo;
+	}
+
+	public Map<String, DictionaryType> queryDictionaryTypeMapByCodeList(List<String> codeList){
+		return dictionaryTypeService.queryDictionaryTypeMapByCodeList(codeList);
 	}
 }
