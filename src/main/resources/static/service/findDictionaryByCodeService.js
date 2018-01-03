@@ -57,7 +57,18 @@
                    d.reject("error");
                });
                return d.promise;
-		   }
+		   }else{
+               //当已经存在时走这个
+               var returnDataList = {};
+               dictionaryQueryDataList.forEach(function (item) {
+                   var itemName = item+"List";
+                   if(self.dataService.codeResultList[itemName]){
+                       returnDataList[itemName]=self.dataService.codeResultList[itemName].items;
+                   }
+               });
+               d.resolve(returnDataList);
+               return d.promise;
+           }
        };
 	}]);
 }());
