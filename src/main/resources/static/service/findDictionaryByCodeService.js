@@ -19,12 +19,14 @@
 	       });
 	   };
 
-        var self = this;
-        this.dataService = {
-            // 存储所以查询页的查询条件数据，手动刷新页面后数据会清空。
+	   //op中有太多调用字典查询的接口，此是为了减少字典查询的http请求，提高性能
+        // 用于存储字典查询的结果，手动刷新页面后数据会清空。
+        this.storeDictionaryDataService = {
             codeQueryList:[],
             codeResultList:{}
         };
+
+        var self = this;
 
 	   this.storeDictionaryDataList = function (dictionaryQueryDataList) {
 
@@ -32,9 +34,9 @@
 
 	   		var filterDictionaryQueryDataList = [];
            dictionaryQueryDataList.forEach(function (item) {
-               if(self.dataService.codeQueryList.indexOf(item) == -1){
+               if(self.storeDictionaryDataService.codeQueryList.indexOf(item) == -1){
                    filterDictionaryQueryDataList.push(item);
-                   self.dataService.codeQueryList.push(item);
+                   self.storeDictionaryDataService.codeQueryList.push(item);
                }
            });
 
@@ -55,17 +57,17 @@
                $http.post('common/queryDictionaryTypeMapByCodeList',filterDictionaryQueryDataList).success(function (response) {
                    for(var i in response.data){
                        var itemName = i + "List";
-                       self.dataService.codeResultList[itemName] = response.data[i];
+                       self.storeDictionaryDataService.codeResultList[itemName] = response.data[i];
 
                    }
-                   resolveReturnDataList(self.dataService.codeResultList)
+                   resolveReturnDataList(self.storeDictionaryDataService.codeResultList)
                }).error(function(){
                    d.reject("error");
                });
                return d.promise;
 		   }else{
                //当已经存在时走这个
-               resolveReturnDataList(self.dataService.codeResultList);
+               resolveReturnDataList(self.storeDictionaryDataService.codeResultList);
                return d.promise;
            }
        };
