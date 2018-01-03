@@ -37,6 +37,20 @@
                    self.dataService.codeQueryList.push(item);
                }
            });
+
+           //处理返回的值
+           function resolveReturnDataList(codeResultList) {
+               //根据传入的参数返回相关list
+               var returnDataList = {};
+               dictionaryQueryDataList.forEach(function (item) {
+                   var itemName = item+"List";
+                   if(codeResultList[itemName]){
+                       returnDataList[itemName]=codeResultList[itemName].items;
+                   }
+               })
+               d.resolve(returnDataList);
+           }
+
            if(filterDictionaryQueryDataList.length > 0){
                $http.post('common/queryDictionaryTypeMapByCodeList',filterDictionaryQueryDataList).success(function (response) {
                    for(var i in response.data){
@@ -44,29 +58,14 @@
                        self.dataService.codeResultList[itemName] = response.data[i];
 
                    }
-                   //根据传入的参数返回相关list
-                   var returnDataList = {};
-                   dictionaryQueryDataList.forEach(function (item) {
-					   var itemName = item+"List";
-					   if(self.dataService.codeResultList[itemName]){
-                           returnDataList[itemName]=self.dataService.codeResultList[itemName].items;
-					   }
-                   })
-                   d.resolve(returnDataList);
+                   resolveReturnDataList(self.dataService.codeResultList)
                }).error(function(){
                    d.reject("error");
                });
                return d.promise;
 		   }else{
                //当已经存在时走这个
-               var returnDataList = {};
-               dictionaryQueryDataList.forEach(function (item) {
-                   var itemName = item+"List";
-                   if(self.dataService.codeResultList[itemName]){
-                       returnDataList[itemName]=self.dataService.codeResultList[itemName].items;
-                   }
-               });
-               d.resolve(returnDataList);
+               resolveReturnDataList(self.dataService.codeResultList);
                return d.promise;
            }
        };
