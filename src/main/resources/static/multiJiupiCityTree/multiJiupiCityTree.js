@@ -151,6 +151,7 @@
 	                    //获取当前树对象,全部未勾选的节点
 	                    var notCheckedNodeList = treeObj.getCheckedNodes(false);
 	                    zTreeService.cahceUserCheckedNode(checkedNodeList,notCheckedNodeList);
+	                    //选中后触发事件
                         $scope.cityClickFun();
 	                }
 	                
