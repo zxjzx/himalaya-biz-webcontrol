@@ -18,6 +18,7 @@
 	            isDisabled:'=',
 	            defaultCityMode : '=',
 	            hideCitymode :'=',
+				cityClickFun:'&'
 	        },
 	        templateUrl:  '../static/multiJiupiCityTree/multiJiupiCityTree.html',
 	        controller: ['$rootScope','$scope','$http','jiupiCityTreeService','findDictionaryByCodeService','zTreeService',
@@ -149,8 +150,8 @@
 	                    var checkedNodeList = treeObj.getCheckedNodes(true);
 	                    //获取当前树对象,全部未勾选的节点
 	                    var notCheckedNodeList = treeObj.getCheckedNodes(false);
-	                    
 	                    zTreeService.cahceUserCheckedNode(checkedNodeList,notCheckedNodeList);
+                        $scope.cityClickFun();
 	                }
 	                
 	                function nodeHighlight(nodeIndex){
