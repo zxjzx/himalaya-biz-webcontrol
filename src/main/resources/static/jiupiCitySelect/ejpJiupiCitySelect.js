@@ -16,7 +16,8 @@
 				hidePleaseSelect :'=' ,
 				changeJiupiProvince : '=' ,
 				changeJiupiCity : '=' ,
-				isDisabled : '=' 
+				isDisabled : '=' ,
+                selectCityFun:'&'
 			},
 			templateUrl:'../static/jiupiCitySelect/ejpJiupiCitySelect.html',
 			controller:["$scope","$http",'ejpJiupiCityService',function($scope,$http,ejpJiupiCityService){
@@ -52,6 +53,7 @@
 				$scope.getJiupiCityObj = function(cityId){
 					if(cityId){
 						 $scope.jiupiCityVo.cityObj = ejpJiupiCityService.getCityObjByCityId(cityId);
+						 $scope.selectCityFun();
 					}
 				}
 			}]
