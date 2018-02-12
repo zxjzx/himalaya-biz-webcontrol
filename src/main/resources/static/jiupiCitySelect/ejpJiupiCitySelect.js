@@ -14,10 +14,9 @@
 			scope:{
 				jiupiCityVo : '=' ,
 				hidePleaseSelect :'=' ,
-				changeJiupiProvince : '=' ,
-				changeJiupiCity : '=' ,
-				isDisabled : '=' ,
-                selectCityFun:'&'
+				changeJiupiProvince : '&' ,//选择省触发
+				changeJiupiCity : '&' ,//选择市触发
+				isDisabled : '='
 			},
 			templateUrl:'../static/jiupiCitySelect/ejpJiupiCitySelect.html',
 			controller:["$scope","$http",'ejpJiupiCityService',function($scope,$http,ejpJiupiCityService){
@@ -31,7 +30,7 @@
 							initJiupiCity();
 						}
 					})
-				}
+				};
 				getJiupiCity();
 				
 				//初始化酒批城市
@@ -53,9 +52,9 @@
 				$scope.getJiupiCityObj = function(cityId){
 					if(cityId){
 						 $scope.jiupiCityVo.cityObj = ejpJiupiCityService.getCityObjByCityId(cityId);
-						 $scope.selectCityFun();
+						 $scope.changeJiupiCity();
 					}
-				}
+				};
 			}]
 		 }	
 	}])
