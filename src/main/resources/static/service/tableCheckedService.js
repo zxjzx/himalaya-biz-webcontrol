@@ -62,7 +62,7 @@
         this.hasExistedDataList = function (params,idName,idList){
         	tableDataId = idName;
 
-        	if(params.length == 0){
+        	if(!params.length){
         		hasImportedList = [];
         		newCheckedProductList = [];
         		newCheckedProductIdList = [];
@@ -108,14 +108,14 @@
         	currentPageDataList.forEach(function (outerItem) {
                 hasImportedIdList.forEach(function (innerItem) {
                 	var compareId = outerItem[currentIdName];
-                    if(compareId == innerItem){
+                    if(compareId === innerItem){
                         outerItem.flag = true;
                         outerItem.disab = true;
                         num ++ ;
                     }
                 });
             });
-        	
+
         	if(num === params.length){
         		return true;
         	}else{
@@ -132,7 +132,6 @@
         this.updateSelection = function(event,item){
         	var checkbox = event.target;
             var num = 0;
-            var action = checkbox.checked ? 'add' : 'remove';
             var allCheck = false;//全选按钮是否选中
             if(checkbox.checked){
                 newCheckedProductList.push(item);
@@ -141,19 +140,19 @@
                 var index = newCheckedProductList.indexOf(item);
                 newCheckedProductList.splice(index,1);
                 newCheckedProductIdList.splice(item[currentIdName]);
-            };
+            }
             currentPageDataList.forEach(function (item) {
                 if(item.flag){
                     num++;
                 }
             });
-            if(num === currentPageDataList.length){//页面显示的数据全部选中时,全选按钮自动勾选
-                var allCheck = true;
+            if( currentPageDataList.length === num){//页面显示的数据全部选中时,全选按钮自动勾选
+                allCheck = true;
             }else{
-                var allCheck = false;
+                allCheck = false;
             }
             return allCheck;
-		}
+		};
 
         /**
          * 点击全选按钮
@@ -177,7 +176,7 @@
 
                 if(newCheckedProductIdList.length > 0 ){
                     newCheckedProductList.forEach(function (part) {
-                        if(part[tableDataId] == item[tableDataId]){
+                        if(part[tableDataId] === item[tableDataId]){
                             item.flag = true;
                         }
                     })
@@ -204,12 +203,12 @@
         	currentPageDataList.forEach(function (outerItem) {
                 newCheckedProductIdList.forEach(function (innerItem) {
                 	if(outerItem[tableDataId]){
-                		if(outerItem[tableDataId] == innerItem){
+                		if(outerItem[tableDataId] === innerItem){
                 			outerItem.flag = true;
                 			num ++ ;
                 		}
                 	}else{
-                		if(outerItem[currentIdName] == innerItem){
+                		if(outerItem[currentIdName] === innerItem){
                 			outerItem.flag = true;
                 			num ++ ;
                 		}
@@ -234,8 +233,8 @@
             });
             return {
         		hasImportedList:hasImportedList,
-        		newCheckedProductList:newCheckedProductList,
+        		newCheckedProductList:newCheckedProductList
         	}
         }
 	}])
-}())
+}());
